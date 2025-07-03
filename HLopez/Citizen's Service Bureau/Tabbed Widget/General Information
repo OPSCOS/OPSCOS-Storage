@@ -1,0 +1,71 @@
+<style>
+    .button-wrapper {
+    width: 100%;
+    overflow-x: hidden;
+    padding: 0; /* Remove potential outer padding */
+    margin: 0;
+    }
+    .button-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 16px;
+    max-width: 100vw;
+    box-sizing: border-box;
+    }
+    .dept-button {
+    padding: 0.9rem;
+    background: linear-gradient(145deg, #3c4663, #2f3652);
+    color: white !important;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none !important;
+    font-size: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    white-space: normal;
+    line-height: 1.4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 88px;
+    width: 100%;
+    box-sizing: border-box;
+    }
+    .dept-button:hover {
+    background: linear-gradient(145deg, #4c5678, #3c4663);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    }
+    .dept-button:focus {
+    outline: 3px solid #ffbf47;
+    outline-offset: 2px;
+    }
+    .dept-button .link-icon {
+    margin-left: 6px;
+    font-size: 0.9em;
+    line-height: 1;
+    }
+    @media (max-width: 600px) {
+    .button-container {
+    grid-template-columns: 1fr;
+    }
+    }
+</style>
+<div class="button-wrapper">
+<div class="button-container">
+<a class="dept-button" href="https://boardofreps.org/calendar.aspx" target="_blank" rel="noopener" aria-label="View upcoming or previous board of representative meetings (opens in a new tab)">
+Board of Representative Meetings<span class="link-icon" aria-hidden="true">↗</span>
+</a>
+<a class="dept-button" href="https://www.stamfordct.gov/government/view-all-city-departments" target="_blank" rel="noopener" aria-label="View all city departments (opens in a new tab)">
+City Departments<span class="link-icon" aria-hidden="true">↗</span>
+</a>
+<a class="dept-button" href="https://www.stamfordct.gov/government/human-resources/city-jobs" target="_blank" rel="noopener" aria-label="View current job openings (opens in a new tab)">
+City Jobs<span class="link-icon" aria-hidden="true">↗</span>
+</a>
+<a class="dept-button" href="https://www.stamfordct.gov/government/boards-commissions" target="_blank" rel="noopener" aria-label="View boards and commissions (opens in a new tab)">
+Boards and Commissions<span class="link-icon" aria-hidden="true">↗</span>
+</a>
+</div>
+</div>
