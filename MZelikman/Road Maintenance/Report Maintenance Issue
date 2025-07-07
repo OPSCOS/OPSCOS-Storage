@@ -1,0 +1,149 @@
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+    body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 20px;
+    box-sizing: border-box;
+    line-height: 1.6;
+    }
+    .full-road-display {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-radius: 12px;
+    max-width: 800px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+    }
+    .report-picture {
+    width: 100%;
+    overflow: hidden;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    height: 220px;
+    }
+    .report-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    }
+    .issue-link {
+    text-decoration: none !important;
+    color: inherit;
+    display: block;
+    width: calc(100% - 40px);
+    max-width: 400px;
+    margin-top: -50px;
+    position: relative;
+    z-index: 10;
+    border-radius: 12px;
+    }
+    .report-issue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #4A5568;
+    color: #FFFFFF;
+    border-radius: 12px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+    height: 100px;
+    }
+    .issue-link:hover .report-issue {
+    background-color: #3A4456;
+    transform: translateY(-2px);
+    }
+    .issue-link:active .report-issue {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+    .button-icon {
+    margin-bottom: 15px;
+    width: 40px;
+    height: 40px;
+    }
+    .button-icon svg {
+    fill: #FFFFFF;
+    width: 100%;
+    height: 100%;
+    display: block;
+    }
+    .button-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.3;
+    }
+    .report-info {
+    padding: 10px;
+    text-align: left;
+    font-size: 1rem;
+    color: #555;
+    margin-top: 20px;
+    }
+    .report-info p {
+    margin-bottom: 1em;
+    }
+    @media (max-width: 768px) {
+    .full-road-display {
+    margin: 10px;
+    }
+    .report-picture {
+    height: 250px;
+    }
+    .issue-link {
+    width: calc(100% - 30px);
+    margin-top: -40px;
+    }
+    .report-issue {
+    padding: 25px 15px;
+    }
+    .button-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+    }
+    .button-text {
+    font-size: 1.1rem;
+    }
+    .report-info {
+    padding: 20px;
+    font-size: 0.95rem;
+    }
+    }
+</style>
+<div class="full-road-display">
+<div class="report-picture">
+<img src="https://www.stamfordct.gov/home/showimage?id=2602&amp;t=637484822337430000" alt="Road maintenance image">
+</div>
+<a href="https://veoci.com/v/p/dashboard/rpny838xny" target="_blank" class="issue-link">
+<div class="report-issue">
+<div class="button-icon">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L1 21h22L12 2zm1 16h-2v-2h2v2zm0-4h-2V9h2v5z"></path>
+</svg>
+</div>
+<span class="button-text">Report a Road Maintenance Issue</span>
+</div>
+</a>
+<div class="report-info">
+<p>The City Highways Division maintains Stamford's over 315 miles of centerline road, which is the largest municipal road system in the State.</p>
+<p>Crews located at four facilities throughout Stamford handle all the maintenance and repair activities, including but not limited to storm system cleaning, road maintenance, snow plowing, and leaf pickup.</p>
+<p>The Highway team is dedicated to maintaining the wellness of the traveling public as well as the safety and aesthetic value of the infrastructure.</p>
+</div>
+</div>
