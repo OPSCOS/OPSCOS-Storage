@@ -1,0 +1,121 @@
+<div id="5878_8904_23242" class="tab-item tab_section ui-tabs-panel ui-corner-bottom ui-widget-content" role="tabpanel" style="" aria-labelledby="ui-id-3" aria-hidden="false" tabindex="0">
+<style>
+    .accordion-wrapper {
+    max-width: 800px;
+    margin: 30px auto;
+    font-family: Arial, sans-serif;
+    }
+    .accordion {
+    background-color: #3c4663;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease;
+    }
+    .accordion:hover {
+    background-color: #59648a;
+    }
+    .accordion-arrow {
+    transition: transform 0.3s ease;
+    }
+    .accordion.active .accordion-arrow {
+    transform: rotate(90deg);
+    }
+    .panel {
+    background: #f9f9f9;
+    color: #333;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    padding: 0 20px;
+    border-radius: 0 0 10px 10px;
+    }
+    .accordion.active + .panel {
+    max-height: 2000px; /* just needs to be higher than content height */
+    padding: 20px;
+    }
+    .panel p {
+    margin: 10px 0;
+    line-height: 1.6;
+    }
+</style>
+<div class="accordion-wrapper">
+<!-- Residential Code Dropdown -->
+<div class="accordion" onclick="this.classList.toggle('active')">
+<span>Required Inspections per International Residential Code</span>
+<span class="accordion-arrow">▶</span>
+</div>
+<div class="panel">
+<ul>
+    <li><strong>R109.1.1 Foundation inspection.</strong> Inspection of the foundation shall be made after poles or piers are set or trenches or basement areas are excavated and any required forms erected and any required reinforcing steel is in place and supported prior to the placing of concrete. The foundation inspection shall include excavations for thickened slabs intended for the support of bearing walls, partitions, structural supports, or equipment and special requirements for wood foundations.</li>
+</ul>
+<ul>
+    <li><strong>R109.1.2 Plumbing, mechanical, gas and electrical systems inspection.</strong> Rough inspection of plumbing, mechanical, gas and electrical systems shall be made prior to covering or concealment, before fixtures or appliances are set or installed, and prior to framing inspection.</li>
+</ul>
+<ul style="margin-left: 40px;">
+    <li><em>Exception:</em> Backfilling of ground-source heat pump loop systems tested in accordance with Section M2105.1 prior to inspection shall be permitted.</li>
+</ul>
+<ul>
+    <li><strong>R109.1.3 Floodplain inspections.</strong> For construction in flood hazard areas as established by Table R301.2(1), upon placement of the lowest floor, including basement, and prior to further vertical construction, the building official shall require submission of documentation, prepared and sealed by a registered design professional, of the elevation of the lowest floor, including basement, required in Section R322.</li>
+</ul>
+<ul>
+    <li><strong>R109.1.4 Frame and masonry inspection.</strong> Inspection of framing and masonry construction shall be made after the roof, masonry, framing, firestopping, draftstopping and bracing are in place and after the plumbing, mechanical and electrical rough inspections are approved.</li>
+</ul>
+<ul>
+    <li><strong>R109.1.5 Other inspections.</strong> In addition to inspections in Sections R109.1.1 through R109.1.4, the building official shall have the authority to make or require any other inspections to ascertain compliance with this code and other laws enforced by the building official.</li>
+</ul>
+<ul>
+    <li><strong>R109.1.5.1 Fire-resistance-rated construction inspection.</strong> Where fire-resistance-rated construction is required between dwelling units or due to location on property, the building official shall require an inspection of such construction after lathing or gypsum board or gypsum panel products are in place, but before any plaster is applied, or before board or panel joints and fasteners are taped and finished.</li>
+</ul>
+<ul>
+    <li><strong>R109.1.6 Final inspection.</strong> Final inspection shall be made after the permitted work is complete and prior to occupancy.</li>
+</ul>
+<ul>
+    <li><strong>R109.1.6.1 Elevation documentation.</strong> If located in a flood hazard area, the documentation of elevations required in Section R322.1.10 shall be submitted to the building official prior to the final inspection.</li>
+</ul>
+</div>
+<!-- Building Code Dropdown -->
+<div class="accordion" onclick="this.classList.toggle('active')">
+<span>Required Inspections per International Building Code</span>
+<span class="accordion-arrow">▶</span>
+</div>
+<div class="panel">
+<ul>
+    <li><strong>110.2 Preliminary inspection.</strong> Before issuing a permit, the building official is authorized to examine or cause to be examined buildings, structures and sites for which an application has been filed.</li>
+</ul>
+<ul>
+    <li><strong>110.3.1 Footing and foundation inspection.</strong> Footing and foundation inspections shall be made after excavations for footings are complete and any required reinforcing steel is in place. For concrete foundations, any required forms shall be in place prior to inspection. Materials for the foundation shall be on the job, except where concrete is ready mixed in accordance with ASTM C 94, the concrete need not be on the job.</li>
+</ul>
+<ul>
+    <li><strong>110.3.2 Concrete slab and under-floor inspection.</strong> Concrete slab and under-floor inspections shall be made after in-slab or under-floor reinforcing steel and building service equipment, conduit, piping accessories and other ancillary equipment items are in place, but before any concrete is placed or floor sheathing installed, including the subfloor.</li>
+</ul>
+<ul>
+    <li><strong>110.3.3 Lowest floor elevation.</strong> In flood hazard areas, upon placement of the lowest floor, including the basement, and prior to further vertical construction, the elevation certification required in Section 1612.5 shall be submitted to the building official.</li>
+</ul>
+<ul>
+    <li><strong>110.3.4 Frame inspection.</strong> Framing inspections shall be made after the roof deck or sheathing, all framing, fireblocking and bracing are in place and pipes, chimneys and vents to be concealed are complete and the rough electrical, plumbing, heating wires, pipes and ducts are approved.</li>
+</ul>
+<ul>
+    <li><strong>110.3.5 Lath, gypsum board and gypsum panel product inspection.</strong> Lath, gypsum board and gypsum panel product inspections shall be made after lathing, gypsum board and gypsum panel products, interior and exterior, are in place, but before any plastering is applied or gypsum board and gypsum panel product joints and fasteners are taped and finished.</li>
+</ul>
+<ul style="margin-left: 40px;">
+    <li><em>Exception:</em> Gypsum board and gypsum panel products that are not part of a fire-resistance-rated assembly or a shear assembly.</li>
+</ul>
+<ul>
+    <li><strong>110.3.6 Fire- and smoke-resistant penetrations.</strong> Protection of joints and penetrations in fire-resistancerated assemblies, smoke barriers and smoke partitions shall not be concealed from view until inspected and approved.</li>
+</ul>
+<ul>
+    <li><strong>110.3.7 Energy efficiency inspections.</strong> Inspections shall be made to determine compliance with Chapter 13 and shall include, but not be limited to, inspections for: envelope insulation R- and U-values, fenestration U-value, duct system R-value, and HVAC and water-heating equipment efficiency.</li>
+</ul>
+<ul>
+    <li><strong>110.3.8 Other inspections.</strong> In addition to the inspections specified in Sections 110.3.1 through 110.3.7, the building official is authorized to make or require other inspections of any construction work to ascertain compliance with the provisions of this code and other laws that are enforced by the department of building safety.</li>
+</ul>
+</div>
+</div>
+</div>
