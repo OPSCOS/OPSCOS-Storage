@@ -1,0 +1,75 @@
+<style>
+    .button-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 20px;
+    max-width: 100%;
+    }
+    .button-container a.dept-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    padding: 1rem;
+    background: linear-gradient(145deg, #3c4663, #2f3652);
+    color: white !important;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none !important;
+    font-size: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    white-space: normal;
+    line-height: 1.4;
+    text-wrap: balance;
+    }
+    .button-container a.dept-button:hover {
+    background: linear-gradient(145deg, #4c5678, #3c4663);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    }
+    .button-container a.dept-button:focus {
+    outline: 3px solid #ffbf47;
+    outline-offset: 2px;
+    }
+    .button-container a.dept-button span.link-icon {
+    margin-left: 6px;
+    font-size: 0.9em;
+    line-height: 1;
+    }
+    /* Tablet and below (2 columns) */
+    @media (max-width: 900px) {
+    .button-container {
+    grid-template-columns: repeat(2, 1fr);
+    }
+    }
+</style>
+<div class="button-container">
+<a class="dept-button" href="https://www.stamfordct.gov/government/administration/grants-office/community-development/below-market-rate-dwelling-units" target="_blank" rel="noopener">
+Below Market Rate Program (BMR)<span class="link-icon" aria-hidden="true">↗</span>
+</a>
+<a class="dept-button" href="https://www.stamfordct.gov/government/public-safety-health-welfare/health-human-services/programs-services/seniors-and-adults-with-disabilities/renters-rebate-program" target="_blank" rel="noopener">
+Renters Rebate Program<span class="link-icon" aria-hidden="true">↗</span>
+</a>
+<a class="dept-button" href="https://www.stamfordct.gov/government/public-safety-health-welfare/health-human-services/programs-services/seniors-and-adults-with-disabilities/share-the-fare" target="_blank" rel="noopener">
+Share The Fare<span class="link-icon" aria-hidden="true">↗</span>
+</a>
+<a class="dept-button" href="https://www.stamfordct.gov/residents/communications/enotification" target="_blank" rel="noopener">
+Subscribe to City eNotifications<span class="link-icon" aria-hidden="true">↗</span>
+</a>
+<a class="dept-button" href="https://city.ridewithvia.com/stamford" target="_blank" rel="noopener">
+StamForward<span class="link-icon" aria-hidden="true">↗</span>
+</a>
+<a class="dept-button" href="https://www.stamfordct.gov/government/administration/property-assessment/elderly-tax-credit" target="_blank" rel="noopener">
+Elderly / Disabled Homeowner Tax Relief Programs<span class="link-icon" aria-hidden="true">↗</span>
+</a>
+<a class="dept-button" href="https://www.stamfordct.gov/residents/veterans" target="_blank" rel="noopener">
+Veterans<span class="link-icon" aria-hidden="true">↗</span>
+</a>
+<a class="dept-button" href="https://www.stamfordct.gov/government/public-safety-health-welfare/health-human-services/information/housing-information" target="_blank" rel="noopener">
+Housing Information<span class="link-icon" aria-hidden="true">↗</span>
+</a>
+</div>
