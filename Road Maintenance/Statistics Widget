@@ -1,0 +1,114 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    * {
+    box-sizing: border-box;
+    }
+    body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    }
+    .grid-stat-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 100%;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 16px;
+    font-family: Arial, sans-serif;
+    margin-top: 10px;
+    }
+    .counter-box {
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+    .emoji {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    }
+    .counter {
+    font-size: 2em;
+    color: #2a6ebb;
+    margin: 0;
+    }
+    .counter-box p {
+    font-size: 1em;
+    color: #444;
+    margin-top: 10px;
+    }
+    .counter-link {
+    text-decoration: none !important;
+    color: inherit;
+    }
+    .card-arrow-container {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    }
+    .card-arrow-container svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke: currentColor;
+    }
+    @media (max-width: 768px) {
+    .grid-stat-container {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
+    }
+    }
+    @media (max-width: 480px) {
+    .grid-stat-container {
+    grid-template-columns: 1fr;
+    padding: 10px;
+    }
+    }
+</style>
+<div class="grid-stat-container">
+<div class="counter-box">
+<div class="emoji">🕳️</div>
+<h2 class="counter" data-target="860">0</h2>
+<p>Potholes Repaired This Year</p>
+<div class="card-arrow-container">
+</div>
+</div>
+<div class="counter-box">
+<div class="emoji">🚧</div>
+<h2 class="counter" data-target="42">0</h2>
+<p>Miles of Road Resurfaced</p>
+<div class="card-arrow-container">
+</div>
+</div>
+<div class="counter-box">
+<div class="emoji">📩</div>
+<h2 class="counter" data-target="130">0</h2>
+<p>Road Requests Completed</p>
+<div class="card-arrow-container">
+</div>
+</div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const counters = document.querySelectorAll('.counter');
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        let count = 0;
+        const increment = Math.ceil(target / 100);
+        const update = () => {
+          count += increment;
+          if (count < target) {
+            counter.innerText = count;
+            setTimeout(update, 30);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        update();
+      });
+    });
+  </script>
