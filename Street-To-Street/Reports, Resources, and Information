@@ -1,0 +1,121 @@
+<style>
+    .services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start; /* Align cards to top so heights can vary */
+    }
+    .service-card {
+    flex: 0 0 calc(33.333% - 40px); /* fixed basis, no grow */
+    max-width: calc(33.333% - 40px);
+    min-width: 200px;
+    text-align: center;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #fafafa;
+    cursor: pointer;
+    user-select: none;
+    transition: box-shadow 0.2s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+    .service-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .emoji {
+    font-size: 64px;
+    margin-bottom: 12px;
+    display: block;
+    }
+    .service-card h3 {
+    font-size: 1.1em;
+    margin: 0;
+    text-decoration: none;
+    }
+    .request-list {
+    margin-top: 12px;
+    text-align: left;
+    display: none;
+    border-top: 1px solid #ccc;
+    padding-top: 12px;
+    width: 100%; /* make sure links stretch full width */
+    }
+    .request-list a {
+    display: block;
+    color: #0066cc;
+    text-decoration: none;
+    margin: 6px 0;
+    }
+    .request-list a:hover {
+    text-decoration: underline;
+    }
+    .service-card.expanded .request-list {
+    display: block;
+    }
+    @media (max-width: 800px) {
+    .service-card {
+    flex: 0 0 calc(50% - 40px);
+    max-width: calc(50% - 40px);
+    }
+    }
+    @media (max-width: 500px) {
+    .service-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+    }
+    }
+</style>
+<div class="services-grid">
+<div class="service-card" onclick="window.location.href='https://veoci.com/v/p/form/wbvcc7v4ycns';" style="cursor:pointer;">
+<span class="emoji">⚠️️</span>
+<h3>Report an Issue</h3>
+<div class="request-list">
+</div>
+</div>
+<div class="service-card" onclick="window.location.href='https://www.stamfordct.gov/residents/permits-and-licenses';" style="cursor:pointer;">
+<span class="emoji">📄</span>
+<h3>Apply For a Permit/License</h3>
+<div class="request-list">
+</div>
+</div>
+<div class="service-card" onclick="window.location.href='https://www.stamfordct.gov/government/mayor-s-office/walk-in-permitting';" style="cursor:pointer;">
+<span class="emoji">🤝</span>
+<h3>Walk-In Permitting</h3>
+<div class="request-list">
+</div>
+</div>
+<div class="service-card" onclick="window.location.href='https://stamford.thepermitportal.com/';" style="cursor:pointer;">
+<span class="emoji">🚗</span>
+<h3>Parking Permits</h3>
+<div class="request-list">
+</div>
+</div>
+<div class="service-card" onclick="window.location.href='https://www.stamfordct.gov/government/operations/recycling-and-sanitation/how-do-i/apply-for-dump-permit';" style="cursor:pointer;">
+<span class="emoji">🗑️️</span>
+<h3>Where to Dispose of Bulky Items</h3>
+<div class="request-list">
+</div>
+</div>
+<div class="service-card" onclick="window.location.href='https://www.stamfordct.gov/government/public-safety-health-welfare/health-human-services/information/giving/looking-for-assistance/';" style="cursor:pointer;">
+<span class="emoji">🧭</span>
+<h3>Additional Resources</h3>
+<div class="request-list">
+</div>
+</div>
+<div class="service-card" onclick="window.location.href='https://www.stamfordct.gov/government/operations/street-to-street/what-is-street-to-street';" style="cursor:pointer;">
+<span class="emoji">❔️</span>
+<h3>What is Street-to-Street</h3>
+<div class="request-list">
+</div>
+</div>
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('expanded');
+  }
+</script>
+</div>
