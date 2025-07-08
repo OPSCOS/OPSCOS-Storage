@@ -1,0 +1,106 @@
+<div id="5878_8904_23241" class="tab-item tab_section ui-tabs-panel ui-corner-bottom ui-widget-content" role="tabpanel" style="" aria-labelledby="ui-id-2" aria-hidden="false" tabindex="0">
+<style>
+    .accordion-wrapper {
+    max-width: 800px;
+    margin: 30px auto;
+    font-family: Arial, sans-serif;
+    }
+    .accordion {
+    background-color: #3c4663 !important;
+    color: white !important;
+    font-weight: bold !important;
+    cursor: pointer;
+    padding: 15px 20px !important;
+    margin: 0 !important;
+    margin-bottom: 5px !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    transition: background 0.3s ease !important;
+    border: none !important;
+    }
+    .accordion:hover {
+    background-color: #59648a !important;
+    }
+    .accordion-arrow {
+    transition: transform 0.3s ease !important;
+    }
+    .accordion.active .accordion-arrow {
+    transform: rotate(90deg) !important;
+    }
+    .panel {
+    background: #f9f9f9 !important;
+    color: #333 !important;
+    overflow: hidden !important;
+    max-height: 0 !important;
+    transition: max-height 0.4s ease, padding 0.3s ease !important;
+    padding: 0 20px !important;
+    border-radius: 0 0 10px 10px !important;
+    margin-bottom: 10px !important;
+    }
+    .accordion.active + .panel {
+    max-height: 2000px !important;
+    padding: 20px !important;
+    }
+    .panel p {
+    margin: 10px 0 !important;
+    line-height: 1.6 !important;
+    }
+    .panel a {
+    color: #1a73e8 !important;
+    text-decoration: underline !important;
+    }
+    /* Bullet list styles for Inspection Procedures */
+    .inspection-procedures {
+    list-style-type: disc !important;
+    padding-left: 20px !important;
+    }
+    .inspection-procedures li {
+    margin-bottom: 10px !important;
+    }
+</style>
+<div class="accordion-wrapper">
+<!-- Scheduling an Inspection -->
+<div class="accordion" onclick="this.classList.toggle('active')">
+<span>Scheduling an Inspection</span>
+<span class="accordion-arrow">▶</span>
+</div>
+<div class="panel">
+<ul>
+    <li>To schedule an inspection, residents can request an inspection in View Point Cloud by <a href="https://stamfordct.portal.opengov.com/" target="_blank">Clicking Here</a>.</li>
+</ul>
+<ul>
+    <li>Simply, navigate to your account, select the record you'd like to request an inspection for and select the "Inspection" step on the left-hand side of the page. Please include contact info on all inspection requests.</li>
+</ul>
+<ul>
+    <li style="margin-left: 40px;"><strong>Please note:</strong> You will not be able to schedule an inspection until you’ve received all departmental approvals, the fee has been paid and the permit has been issued.</li>
+</ul>
+</div>
+<!-- Canceling an Inspection -->
+<div class="accordion" onclick="this.classList.toggle('active')">
+<span>Canceling an Inspection</span>
+<span class="accordion-arrow">▶</span>
+</div>
+<div class="panel">
+<ul>
+    <li>To cancel an inspection, please <a href="https://stamfordct.seamlessdocs.com/f/PRCR" target="_blank">complete this form</a>.</li>
+</ul>
+</div>
+<!-- Inspection Procedures -->
+<div class="accordion" onclick="this.classList.toggle('active')">
+<span>Inspection Procedures</span>
+<span class="accordion-arrow">▶</span>
+</div>
+<div class="panel">
+<ul class="inspection-procedures">
+    <li>After a building permit has been issued, if applicable, HVAC, Plumbing and Electrical permits must be obtained before work is performed.</li>
+    <li>After rough work has been done in walls and ceilings, rough inspections must be called in for plumbing, HVAC and electrical work.</li>
+    <li>After all rough inspections have been completed and signed off, a framing inspection needs to be called in before closing walls and ceilings.</li>
+    <li>After the framing inspection has been successfully conducted and work has been completed, final inspections must be called in and approvals obtained from all relevant departments.</li>
+    <li>Upload all required closeout documents, and request a plan review appointment to have the Certificate of Occupancy issued.</li>
+    <li>When Plumbing, HVAC, Electrical, Fire Protection, Roof and Siding permit has been issued without a building permit, a final inspection must be called in and approvals obtained before a Certificate of Approval can be issued.</li>
+</ul>
+</div>
+</div>
+</div>
