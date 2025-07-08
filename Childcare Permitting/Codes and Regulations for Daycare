@@ -1,0 +1,281 @@
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 80vh;
+    }
+    .accordion-container {
+    width: 100%;
+    max-width: 700px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    }
+    .section-title {
+    font-size: 1.8em;
+    color: #333;
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    }
+    .section-title .line {
+    /* width: 40px;
+    height: 4px;
+    background-color: #fd7e14;
+    margin-right: 15px;
+    border-radius: 2px; */  /* Removed orange line styles */
+    display: none; /* completely remove the line */
+    }
+    .accordion-item {
+    margin-bottom: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    }
+    .accordion-header {
+    background-color: #f7f7f7;
+    color: #3E4665;
+    padding: 15px 20px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s ease;
+    }
+    .accordion-header:hover {
+    background-color: #e9e9e9;
+    }
+    .accordion-header .icon {
+    /* Removed the icon class */
+    font-size: 1.5em;
+    margin-right: 15px;
+    line-height: 1;
+    transition: transform 0.3s ease;
+    }
+    .accordion-content {
+    background-color: #ffffff;
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    }
+    .accordion-content p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #555;
+    }
+    .accordion-content p:last-child {
+    margin-bottom: 20px;
+    }
+    .accordion-content a {
+    color: #007bff;
+    text-decoration: none;
+    }
+    .accordion-content a:hover {
+    text-decoration: underline;
+    }
+    details {
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    }
+    summary {
+    background-color: #f7f7f7;
+    color: #333;
+    padding: 15px 20px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s ease;
+    list-style: none;
+    }
+    summary:hover {
+    background-color: #e9e9e9;
+    border-color: #007bff;
+    }
+    summary::after {
+    content: '+';
+    font-size: 1.5em;
+    margin-right: 15px;
+    transition: transform 0.3s ease;
+    }
+    details[open] summary::after {
+    transform: rotate(45deg);
+    content: '−';
+    }
+    details[open] .accordion-content {
+    max-height: 500px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    }
+    summary::-webkit-details-marker {
+    display: none;
+    }
+    .accordion-content {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    }
+    details[open] .accordion-content {
+    max-height: 500px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    }
+</style>
+<div class="accordion-container">
+<h2 class="section-title">
+<span class="line"></span> Codes and Regulations for Opening a Child Daycare
+</h2>
+<details class="accordion-item">
+<summary class="accordion-header">
+Building Department</summary>
+<div class="accordion-content">
+<ul>
+    <li>Day Care Centers&nbsp;&nbsp;</li>
+</ul>
+<ul style="margin-left: 40px;">
+    <li>Group E, Educational (IBC Section 305.2) or Group I, Institutional (IBC Section 308.5 and IBC Section 308.5.1)&nbsp;</li>
+</ul>
+<ul>
+    <li>Group Child Care Homes</li>
+</ul>
+<ul style="margin-left: 40px;">
+    <li>A modification of the IRC Section 308.5.4 for&nbsp;&nbsp;</li>
+</ul>
+<ul>
+    <li>Family Child Care Home</li>
+</ul>
+<ul style="margin-left: 40px;">
+    <li>IBC Sections 305.2.3 and 308.5.4. Requires State mod for more than three children.&nbsp;</li>
+</ul>
+</div>
+</details>
+<details class="accordion-item">
+<summary class="accordion-header">
+Health Department</summary>
+<div class="accordion-content">
+<ul>
+    <li>Health Department review only required for Group Child Care Homes and Child Care Centers.</li>
+    <li>Comprehensive lead test required for pre-1978 buildings includes test of paint, water and bare soil.&nbsp;</li>
+    <li>Food preparation or delivery for daycares must be discussed with the Department of Health and Human Services, Division of Environmental Health and Inspections.</li>
+</ul>
+</div>
+</details>
+<details class="accordion-item">
+<summary class="accordion-header">
+Engineering Bureau</summary>
+<div class="accordion-content">
+<ul>
+    <li>All development projects must comply with&nbsp;<a href="https://www.stamfordct.gov/home/showpublisheddocument/4571/637540965906770000" target="_blank">Stamford’s Stormwater Drainage Manual</a>.</li>
+</ul>
+<ul>
+    <li>Change of use applications may require the implementation of water quality improvement measures.</li>
+</ul>
+</div>
+</details>
+<details class="accordion-item">
+<summary class="accordion-header">
+Transportation, Traffic, &amp; Parking Department</summary>
+<div class="accordion-content">
+<ul>
+    <li>Parking area safety considerations (geometry, signage, pavement markings)&nbsp;</li>
+</ul>
+<ul>
+    <li>Drop-off/pick-up safety and traffic flow&nbsp;</li>
+</ul>
+</div>
+</details>
+<details class="accordion-item">
+<summary class="accordion-header">
+What kind of Zoning approval do I need?</summary>
+<div class="accordion-content">
+<ul>
+    <li>Review&nbsp;<a href="https://www.stamfordct.gov/home/showpublisheddocument/2425/638568334405470000" target="_blank">Zoning Regulations</a>&nbsp;to determine if you need a Zoning Permit (staff level) for as-of-right projects or Special Permit (Zoning Board) before you begin.&nbsp; &nbsp;</li>
+</ul>
+</div>
+</details>
+<details class="accordion-item">
+<summary class="accordion-header">
+Zoning Review Process</summary>
+<div class="accordion-content">
+<ul type="disc">
+    <li><strong>Family Child Care Homes</strong>&nbsp;and&nbsp;<strong>Group Child Care Homes</strong>&nbsp;are allowed by Zoning Permit in all Zoning Districts except Industrial Districts.&nbsp;</li>
+    <li><strong>Child Day Care Centers</strong>&nbsp;are permitted by right in commercial and multifamily zoned districts.&nbsp;</li>
+    <li><strong>Child Day Care Centers</strong>&nbsp;in single-family zoning districts require a Special Permit from the Zoning Board.&nbsp;</li>
+    <li>No child day care allowed in Industrial Zoning Districts.&nbsp;</li>
+</ul>
+</div>
+</details>
+<details class="accordion-item">
+<summary class="accordion-header">
+Parking, Drop-off/Pick-up</summary>
+<div class="accordion-content">
+<ul>
+    <li>Parking requirement – 1.25 parking spaces per employee on maximum shift. Show assigned/shared parking spaces in survey/aerial image.&nbsp;</li>
+</ul>
+<ul>
+    <li>Shared parking approval requires administrative approval by Zoning Board.&nbsp;</li>
+</ul>
+</div>
+</details>
+<details class="accordion-item">
+<summary class="accordion-header">
+Fire Marshal</summary>
+<div class="accordion-content">
+<ul>
+    <li>Applicable Fire Codes&nbsp;</li>
+</ul>
+<ul>
+    <li>Daycare Occupancies – NFPA 101 sec. 3.3.198.4&nbsp;</li>
+</ul>
+<ul>
+    <li>Group Daycare – NFPA 101 sec. 17.6 (3-12 individuals)&nbsp;</li>
+</ul>
+<ul>
+    <li>Home Daycare – NFPA 101 sec. 17.6.1.4.1.1. (3-6 individuals)&nbsp;</li>
+</ul>
+<ul>
+    <li>Applicable Egress for daycare type&nbsp;</li>
+</ul>
+<ul>
+    <li>Applicable Life Safety Systems&nbsp;</li>
+</ul>
+<ul>
+    <li>Fire Alarm&nbsp;</li>
+</ul>
+<ul>
+    <li>Smoke / CO Detection&nbsp;</li>
+</ul>
+<ul>
+    <li>Fire Drills / Evacuation Map&nbsp;</li>
+</ul>
+<ul>
+    <li>Exit Signage / Emergency Lights / Extinguishers&nbsp;</li>
+</ul>
+<ul>
+    <li>For additional information, call the Fire Marshal Office at 203-977-4651</li>
+</ul>
+</div>
+</details>
+</div>
