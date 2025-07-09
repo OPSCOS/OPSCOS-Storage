@@ -1,0 +1,262 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
+<style>
+    * {
+    box-sizing: border-box;
+    }
+    body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    overflow-x: hidden;
+    }
+    .main-container {
+    max-width: 72rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    }
+    .latest-news-header {
+    margin-bottom: 2rem;
+    }
+    .latest-news-header h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    border-bottom: 4px solid #3E4665;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    margin: 0;
+    }
+    .news-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+    .news-grid {
+    grid-template-columns: repeat(2, 1fr);
+    }
+    }
+    .news-card {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+    width: 100%;
+    text-decoration: none;
+    }
+    .news-card:hover {
+    transform: translateY(-5px);
+    }
+    @media (min-width: 768px) {
+    .news-card {
+    flex-direction: row;
+    }
+    }
+    .news-image-container {
+    position: relative;
+    width: 100%;
+    flex-shrink: 0;
+    }
+    @media (min-width: 768px) {
+    .news-image-container {
+    width: 33.333333%;
+    }
+    }
+    .news-image-container img {
+    display: block;
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+    }
+    @media (min-width: 768px) {
+    .news-image-container img {
+    height: 100%;
+    }
+    }
+    .date-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #3E4665;
+    color: #ffffff;
+    padding: 0.5rem;
+    text-align: center;
+    border-bottom-right-radius: 0.5rem;
+    }
+    .date-overlay .font-bold {
+    font-weight: 700;
+    font-size: 1.12rem;
+    }
+    .date-overlay .text-sm {
+    font-size: 1rem;
+    }
+    .news-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    }
+    @media (min-width: 768px) {
+    .news-content {
+    width: 66.666667%;
+    }
+    }
+    .news-content h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
+    word-break: break-word;
+    }
+    .news-content p {
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+    }
+    .read-more {
+    color: #3E4665;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    }
+    .read-more:hover {
+    text-decoration: underline;
+    }
+    .more-news-button-container {
+    margin-top: 2rem;
+    text-align: center;
+    width: 100%;
+    }
+    @media (min-width: 768px) {
+    .more-news-button-container {
+    text-align: left;
+    }
+    }
+    .more-news-button {
+    background-color: #3E4665;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: background-color 0.3s ease-in-out;
+    border: none;
+    cursor: pointer;
+    width: 180px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    }
+    .more-news-button:hover {
+    background-color: #4b5479;
+    }
+    .news-list-link {
+    display: block;
+    text-decoration: none !important;
+    color: inherit;
+    width: 100%;
+    }
+    @media (max-width: 480px) {
+    .latest-news-header h2 {
+    font-size: 1.75rem;
+    }
+    .news-content h3 {
+    font-size: 1rem;
+    }
+    .news-content p {
+    font-size: 0.75rem;
+    }
+    }
+</style>
+<div class="main-container">
+<div class="latest-news-header">
+<h2>Operations Corner</h2>
+</div>
+<div class="news-grid">
+<!-- CARD 1 -->
+<div class="news-card">
+<div class="news-image-container">
+<img src="https://www.stamfordct.gov/home/showpublishedimage/2248/637463086424270000" alt="Bridge Open">
+</div>
+<div class="news-content">
+<div>
+<h3>Hunting Ridge Road Bridge Now Open to Vehicular Traffic</h3>
+<p>Capital Projects</p>
+</div>
+</div>
+</div>
+<!-- CARD 2 -->
+<div class="news-card">
+<div class="news-image-container">
+<img src="https://www.apartmentguide.com/blog/wp-content/uploads/2024/09/shutterstock_2345883775-1024x683.jpg" alt="Zoning Changes">
+<div class="date-overlay">
+<div class="font-bold">APR</div>
+<div class="text-sm">15</div>
+</div>
+</div>
+<div class="news-content">
+<div>
+<h3>New Zoning Text Changes in Effect</h3>
+<p>Building Department</p>
+</div>
+</div>
+</div>
+<!-- CARD 3 -->
+<a href="https://www.stamfordct.gov/government/operations/transportation-traffic-parking/projects/bedford-and-forest-pedestrian-safety-and-plaza-project" class="news-list-link">
+<div class="news-card">
+<div class="news-image-container">
+<img src="https://www.stamfordct.gov/home/showpublishedimage/3183/637901099570670000" alt="Bedford and Forest intersection">
+<div class="date-overlay">
+<div class="font-bold">IN</div>
+<div class="text-sm">PROGRESS</div>
+</div>
+</div>
+<div class="news-content">
+<div>
+<h3>Bedford and Forest Project</h3>
+<p>Transportation, Traffic &amp; Parking</p>
+<span class="read-more">Read More →</span>
+</div>
+</div>
+</div>
+</a>
+<!-- CARD 4 -->
+<div class="news-card">
+<div class="news-image-container">
+<img src="https://s.hdnux.com/photos/01/10/26/15/18965314/6/rawImage.jpg" alt="Walk-In Permitting">
+<div class="date-overlay">
+<div class="font-bold">JUL</div>
+<div class="text-sm">09</div>
+</div>
+</div>
+<div class="news-content">
+<div>
+<h3>Walk-In Permitting on Wednesday, July 9th between 9:30am-12:00pm</h3>
+<p>Multi-Department</p>
+</div>
+</div>
+</div>
+</div>
+<a href="https://www.stamfordct.gov/government/news-list#!/" class="news-list-link">
+<div class="more-news-button-container">
+<div class="more-news-button">
+MORE CITY NEWS
+</div>
+</div>
+</a>
+</div>
