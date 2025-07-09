@@ -1,0 +1,53 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    .widget-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+    padding: 0 10px;
+    }
+    .rectangle-widget,
+    .rectangle-widget:link,
+    .rectangle-widget:visited,
+    .rectangle-widget:hover,
+    .rectangle-widget:active,
+    .rectangle-widget:focus {
+    display: inline-block;
+    width: 250px;
+    max-width: 100%;
+    padding: 14px;
+    background-color: #3c4663;
+    color: white !important;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+    text-decoration: none !important;
+    word-break: break-word;
+    }
+    .rectangle-widget:hover {
+    background-color: #323b55;
+    transform: translateY(-2px);
+    }
+    @media (max-width: 480px) {
+    .rectangle-widget {
+    width: 100%;
+    }
+    }
+</style>
+<div class="widget-row">
+<a href="https://www.stamfordct.gov/government/department-faqs" target="_blank" class="rectangle-widget">
+FAQ’s
+</a>
+<a href="https://www.stamfordct.gov/government/operations/documents-forms" target="_blank" class="rectangle-widget">
+Documents &amp; Forms
+</a>
+<a href="https://www.stamfordct.gov/government/operations" target="_blank" class="rectangle-widget">
+Operations Departments
+</a>
+</div>
