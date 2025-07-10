@@ -1,0 +1,163 @@
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+    body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    box-sizing: border-box;
+    }
+    .wpca-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    }
+    .wpca-card {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 180px;
+    max-height: 310px;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    min-width: 280px;
+    flex: 1 1 calc(50% - 10px);
+    }
+    .wpca-card:hover {
+    background-color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    }
+    .wpca-card h3 {
+    font-size: 1.4em;
+    color: #3E4665;
+    margin-top: 0;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    }
+    .wpca-card p {
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    }
+    .box-arrow {
+    font-size: 1.5em;
+    color: #3E4665;
+    align-self: flex-end;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+    .wpca-card:hover .box-arrow {
+    transform: translateX(5px);
+    color: #0056b3;
+    }
+    .header-section-wpca {
+    width: 100%;
+    max-width: 960px;
+    text-align: center;
+    margin-bottom: 15px;
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    }
+    .header-section-wpca h2 {
+    font-size: 1.8em;
+    margin: 0;
+    padding: 0 20px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    font-weight: bold;
+    color: #2c3e50;
+    border-bottom: 4px solid #3E4665;
+    }
+    .wpca-link {
+    text-decoration: none !important;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 calc(50% - 10px);
+    min-width: 280px;
+    cursor: pointer;
+    }
+    @media (max-width: 768px) {
+    .wpca-grid {
+    grid-template-columns: 1fr;
+    padding: 10px;
+    }
+    .wpca-card {
+    min-height: auto;
+    }
+    }
+</style>
+<div class="header-section-wpca">
+<h2>General Information</h2>
+<p>&nbsp;</p>
+<p>Located in Stamford, Connecticut, The Stamford Water Pollution Control Facility processes wastewater from the City of Stamford and the neighboring Town of Darien, and discharges clean water into the East Branch of Stamford Harbor. There has been wastewater treatment at this site since 1900. The first plant was built in 1943, followed by an upgrade in 1976, and the latest upgrade in 2006. The Facility is manned twenty-four hours a day, seven days a week, 365 days a year.
+</p>
+<p>On this website, you will find information about our technology and day-to-day operations. Please contact us if you have any questions or would like additional information.
+</p>
+<p>The Stamford WPCA proudly supports the communities it serves and offers educational activities on wastewater treatment, stormwater, and FOG . We invite you to tour our facility, either in person (public tours will be held on the second Friday of the month) or online with our virtual tour. </p>
+</div>
+<div class="wpca-grid">
+<a href="" class="wpca-link">
+<div class="wpca-card">
+<h3>Sewer Emergencies</h3>
+<ul>
+    <li><span style="color: rgb(89, 89, 89);">Monday - Friday, 7:00am - 3:00pm: (203) 977-4596</span></li>
+    <li><span style="color: rgb(89, 89, 89);">After hours and weekends: (203) 943-1476</span></li>
+</ul>
+</div>
+</a>
+<a href="" class="wpca-link">
+<div class="wpca-card">
+<h3>Billing Questions</h3>
+<ul>
+    <li><span style="color: rgb(89, 89, 89);">Monday - Friday, 8:00am - 4:00pm: (888)-263-5047 / (203) 977-5832</span></li>
+</ul>
+</div>
+</a>
+<a href="" class="wpca-link">
+<div class="wpca-card">
+<h3>Appointments</h3>
+<p><i>Appointments can be scheduled weekly within the below listed hours on the following days:</i></p>
+<p>Monday - Friday, 8:30 a.m. – 3:30 p.m.</p>
+</div>
+</a>
+<a href="" class="wpca-link">
+<div class="wpca-card">
+<h3>Walk-in Hours</h3>
+<p><i>Please be advised that scheduled appointments are handled first and there MAYBE some wait time.</i></p>
+<p><i>Walk-in hours are within the below listed hours on the following days:</i></p>
+<p>Monday - Friday, 8:30am - 3:30pm</p>
+</div>
+</a>
+<a href="" class="wpca-link">
+<div class="wpca-card">
+<h3>Extended Hours</h3>
+<p><i><u>To better assist customers during payment periods,&nbsp;<i><u>extended hours</u></i>&nbsp;for appointment and walk-in hours are as follows</u></i><i>:</i></p>
+<p>April 26 – May 7 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Monday – Friday</p>
+<p>May 24 – June 3  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   Monday – Thursday</p>
+<p>July 19 – August 6&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Monday – Friday</p>
+</div>
+</a>
+</div>
