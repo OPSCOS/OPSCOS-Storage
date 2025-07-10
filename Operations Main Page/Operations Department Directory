@@ -1,0 +1,113 @@
+<style>
+    .tiles-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 20px;
+    width: 100%;
+    margin: 40px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    }
+    @media (max-width: 768px) {
+    .tiles-container {
+    grid-template-columns: repeat(2, 1fr);
+    }
+    }
+    .tile {
+    background: #f9f9fb;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    color: #333;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 140px;
+    outline: none;
+    cursor: default;
+    }
+    .tile:hover,
+    .tile:focus-within {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .emoji {
+    font-size: 32px;
+    margin-bottom: 10px;
+    user-select: none;
+    }
+    .tile a {
+    font-weight: normal;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    outline-offset: 2px;
+    transition: text-decoration 0.2s ease;
+    }
+    .tile a:hover,
+    .tile a:focus {
+    text-decoration: underline;
+    outline: none;
+    }
+</style>
+<h2 id="dept-nav" style="text-align:center; color:#333; font-size:28px; margin-top:40px;">Operations Departments
+</h2>
+<div class="tiles-container" role="navigation" aria-labelledby="dept-nav">
+<div class="tile">
+<span role="img" aria-hidden="true" class="emoji">🏚️</span>
+<a href="https://www.stamfordct.gov/government/operations/anti-blight" aria-label="Anti-Blight Department">Anti-Blight</a>
+</div>
+<div class="tile">
+<span role="img" aria-hidden="true" class="emoji">🏗️</span>
+<a href="https://www.stamfordct.gov/government/operations/building-department" aria-label="Building Department">Building Dept.</a>
+</div>
+<div class="tile">
+<span role="img" aria-hidden="true" class="emoji">🛠️</span>
+<a href="https://www.stamfordct.gov/government/operations/engineering-department" aria-label="Engineering Department">Engineering Dept.</a>
+</div>
+<div class="tile">
+<span role="img" aria-hidden="true" class="emoji">🌳</span>
+<a href="https://www.stamfordct.gov/government/operations/environmental-protection-board" aria-label="Environmental Protection Board">Environmental Protection</a>
+</div>
+<div class="tile">
+<span role="img" aria-hidden="true" class="emoji">🚚</span>
+<a href="https://www.stamfordct.gov/government/operations/fleet-maintenance" aria-label="Fleet Maintenance Department">Fleet Maintenance</a>
+</div>
+<div class="tile">
+<span role="img" aria-hidden="true" class="emoji">🗺️</span>
+<a href="https://www.stamfordct.gov/government/operations/land-use-bureau-planning-zoning-housing-epb" aria-label="Land Use Bureau">Land Use Bureau</a>
+</div>
+<div class="tile">
+<span role="img" aria-hidden="true" class="emoji">🏞️</span>
+<a href="https://www.stamfordct.gov/government/operations/recreation-services" aria-label="Parks and Recreation Department">Parks &amp; Recreation</a>
+</div>
+<div class="tile">
+<span role="img" aria-hidden="true" class="emoji">♻️</span>
+<a href="https://www.stamfordct.gov/government/operations/recycling-and-sanitation" aria-label="Recycling and Sanitation Department">Recycling &amp; Sanitation</a>
+</div>
+<div class="tile">
+<span role="img" aria-hidden="true" class="emoji">🛣️</span>
+<a href="https://www.stamfordct.gov/government/operations/road-maintenance" aria-label="Road Maintenance Department">Road Maintenance</a>
+</div>
+<div class="tile">
+<span role="img" aria-hidden="true" class="emoji">🌧️</span>
+<a href="https://www.stamfordct.gov/government/operations/stormwater-management" aria-label="Stormwater Management Department">Stormwater Mgmt.</a>
+</div>
+<div class="tile">
+<span role="img" aria-hidden="true" class="emoji">🚦</span>
+<a href="https://www.stamfordct.gov/government/operations/transportation-traffic-parking" aria-label="Transportation, Traffic and Parking Department">Transportation, Traffic &amp; Parking</a>
+</div>
+<div class="tile">
+<span role="img" aria-hidden="true" class="emoji">💦</span>
+<a href="https://www.stamfordct.gov/government/operations/water-pollution-control-authority" aria-label="Water Pollution Control Authority">Water Pollution Control</a>
+</div>
+<div class="tile">
+<span role="img" aria-hidden="true" class="emoji">🏢</span>
+<a href="https://www.stamfordct.gov/government/operations/facilities-sustainability" aria-label="Facilities and Sustainability Department">Facilities &amp; Sustainability</a>
+</div>
+<div class="tile">
+<span role="img" aria-hidden="true" class="emoji">❓</span>
+<a href="https://www.stamfordct.gov/government/department-faqs" aria-label="Department Frequently Asked Questions">Department FAQs</a>
+</div>
+</div>
