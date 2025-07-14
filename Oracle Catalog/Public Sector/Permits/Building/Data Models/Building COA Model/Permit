@@ -1,0 +1,138 @@
+SELECT
+    /* Section:General */   
+    /* This section includes general attreibutes that are also found in most other building permits */ 
+    LNP_RECORD_KEY,
+    LNP_RECORD_ID,
+    ATTRIBUTE_CATEGORY,
+    PERSON_FIRST_NAME || ' ' || PERSON_LAST_NAME AS APPLICANT_NAME,
+    NVL(PHONE_AREA_CODE || '' || PHONE_NUMBER, '') AS PHONE_NUM,
+    ADDRESS1 ||' '|| CITY ||' '|| STATE ||' '|| POSTAL_CODE AS APPLICANT_ADDRESS,
+    DESCRIPTION,
+    TO_CHAR(EXTN_ATTRIBUTE_NUMBER010, '$999,999,999.99') AS CONSTRUCTION_COST,
+    EXTN_ATTRIBUTE_NUMBER057 AS NUM_OF_UNITS,
+     EXTN_ATTRIBUTE_CHAR211 AS STIP_COND,
+
+	/* Section:Occupancy Type */   
+    /* Occupancy Type is split between Residential and Other/Commercial */ 
+   
+    CASE EXTN_ATTRIBUTE_CHAR130 
+        WHEN 'Residential' THEN 'Residential'
+        WHEN 'Other' THEN 'Other/Commercial'
+        ELSE NULL
+    END AS OCCUPANCY_TYPE,  
+                   
+            
+   /* Section:Residential */    
+   /*This section includes the Applicable Code. */    
+   /*The Applicable Code is found in both Residential / (Other/Commercial) Occupancy Types but it is placed here as the per the form applicable code only shows up in Residential*/ 
+            
+            
+    CASE 
+        WHEN EXTN_ATTRIBUTE_CHAR130 = 'Residential' THEN
+            CASE EXTN_ATTRIBUTE_CHAR182
+                WHEN '2021IRC' THEN '2021 IRC'
+                WHEN '2021IEBC' THEN '2021 IEBC' 
+                ELSE NULL
+            END 
+        ELSE
+            CASE EXTN_ATTRIBUTE_CHAR210
+                WHEN '2021IBC' THEN '2021 IBC'
+                WHEN '2021IEBC' THEN '2021 IEBC'
+                ELSE NULL
+            END 
+    END AS APPLICABLE_CODE, 
+            
+            
+            
+    /* Section:Other/Commerical */    
+   /*This section includes the the other fields needed. Fields needed are listed below */    
+   /*
+     1. Applicable Code (Found in Section:Residential)  - AC
+     2. Use Group -UG
+     3.Construction Type - CT
+     4. Occupant Load -OL
+     5.Fully Sprinkled -FS
+     6.Automatic Sprinkler System -ASS       
+   */
+            
+CASE 
+        WHEN EXTN_ATTRIBUTE_CHAR130 = 'Other' THEN 
+            CASE EXTN_ATTRIBUTE_CHAR196		
+                WHEN 'Assembly' THEN 'Assembly'
+                WHEN 'Business' THEN 'Business'
+                WHEN 'Educational' THEN 'Educational'
+                WHEN 'FactoryandIndustrial' THEN 'Factory and Industrial'
+                WHEN 'HighHazard' THEN 'High Hazard'
+                WHEN 'Institutional' THEN 'Institutional'
+                WHEN 'Mercantile' THEN 'Mercantile'
+                WHEN 'Residential' THEN 'Residential'
+                WHEN 'Storage' THEN 'Storage'
+                WHEN 'UtilityandMiscellaneous' THEN 'Utility and Miscellaneous'
+                WHEN 'MixedUse' THEN 'Mixed Use'
+                ELSE NULL
+            END 
+        ELSE NULL
+    END AS USE_GROUP,            
+            
+    
+ CASE EXTN_ATTRIBUTE_CHAR096	
+        WHEN 'Non-combBuildElem' THEN 'IA: Non-combustible building elements'
+        WHEN 'IB-Non-combBuildElem' THEN 'IB: Non-combustible building elements'
+        WHEN 'IIA-Non-CombBuildElem' THEN 'IIA: Non-combustible building element'
+        WHEN 'IIB-Non-CombBuildElem' THEN 'IIB: Non-combustible building element'
+        WHEN 'IIIA-Non-CombExtWalls' THEN 'IIIA: Non-combustible Exterior Walls'
+        WHEN 'IIIB-Non-CombExtWalls' THEN 'IIIB: Non-combustible Exterior Walls'
+        WHEN 'IV-HeavyTimber' THEN 'IV: Heavy Timber'
+        WHEN 'VA-AnyBuildingMaterial' THEN 'VA: Any building material permitted by code'
+        WHEN 'VB-AnyBuildingMaterial' THEN 'VB: Any building material permitted by code'
+        ELSE NULL
+    END AS CONSTRUCTION_TYPE,               
+            
+            
+EXTN_ATTRIBUTE_CHAR097 AS ALLOWABLE_OCCUPANT_LOAD,           
+            
+CASE EXTN_ATTRIBUTE_CHAR177 
+        WHEN 'NO' THEN 'No'
+        WHEN 'Yes' THEN 'Yes'
+        ELSE NULL
+    END AS FULLY_SPRINKLED,
+
+            
+            
+ CASE EXTN_ATTRIBUTE_CHAR178 
+        WHEN 'NFPA13DSystem' THEN 'NFPA 13D System'
+        WHEN 'NFPA13RSystem' THEN 'NFPA 13R System'
+        WHEN 'NFPA13System' THEN 'NFPA 13 System'
+        WHEN 'NoSprinklerSys' THEN 'No Sprinkler System'
+        ELSE NULL
+    END AS AUTOMATIC_SPRINKLER_SYSTEM,
+
+
+            
+            
+            
+            
+    /* Section: Dates and Times */           
+    /* Since this is the COA we only need the Current Date */        
+
+ CASE 
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 1 THEN 'January'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 2 THEN 'February'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 3 THEN 'March'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 4 THEN 'April'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 5 THEN 'May'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 6 THEN 'June'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 7 THEN 'July'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 8 THEN 'August'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 9 THEN 'September'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 10 THEN 'October'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 11 THEN 'November'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 12 THEN 'December'
+        ELSE NULL 
+    END || ' ' ||
+    EXTRACT(DAY FROM CURRENT_DATE) || ', ' ||
+    EXTRACT(YEAR FROM CURRENT_DATE) AS CURRENT_DATE
+    
+    
+FROM PSC_LNP_RECORD
+WHERE LNP_RECORD_ID = :P_LNP_RECORD_ID
