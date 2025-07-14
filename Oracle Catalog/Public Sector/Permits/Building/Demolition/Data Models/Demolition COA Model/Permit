@@ -1,0 +1,100 @@
+SELECT
+    LNP_RECORD_KEY,
+    LNP_RECORD_ID,
+    ATTRIBUTE_CATEGORY,
+    PERSON_FIRST_NAME || ' ' || PERSON_LAST_NAME AS APPLICANT_NAME,
+    DESCRIPTION,
+
+    CASE EXTN_ATTRIBUTE_CHAR021
+        WHEN 'Residential' THEN 'Residential'
+        WHEN 'Other' THEN 'Other / Commercial'
+        ELSE NULL
+    END AS OCCUPANCY_TYPE,
+  CASE 
+        WHEN EXTN_ATTRIBUTE_CHAR021 = 'Residential' THEN
+            CASE EXTN_ATTRIBUTE_CHAR022    
+                WHEN 'ACCESSORY' THEN 'Accessory Structure'
+                WHEN 'MAIN' THEN 'Main Building'
+                ELSE NULL
+            END
+        ELSE 
+            CASE EXTN_ATTRIBUTE_CHAR028    
+                WHEN 'AccessoryStruct' THEN 'Accessory Structure'
+                WHEN 'Primary' THEN 'Primary Structure'
+                ELSE NULL
+            END
+    END AS TYPE_OF_STRUCTURE,
+CASE 
+    WHEN EXTN_ATTRIBUTE_CHAR021 = 'Residential' THEN 
+        CASE EXTN_ATTRIBUTE_CHAR027
+            WHEN 'AccessoryStructure' THEN 'Accessory Structure'
+            WHEN 'SingleFamily' THEN 'Single Family'
+            WHEN 'TownHome' THEN 'Town Home'
+            WHEN 'TwoFamily' THEN 'Two Family' 
+            ELSE NULL  
+        END
+    ELSE 
+        CASE EXTN_ATTRIBUTE_CHAR028    
+            WHEN 'AS' THEN 'Accessory Structure'
+            WHEN 'Apt' THEN 'Apartments'
+            WHEN 'Automotive' THEN 'Automotive Service Station'
+            WHEN 'Business' THEN 'Business'
+            WHEN 'Church' THEN 'Church/Religious Buildings'
+            WHEN 'Commercial' THEN 'Commercial'
+            WHEN 'Condominium' THEN 'Condominium'
+            WHEN 'Hospice' THEN 'Hospice/Nursing Home'
+            WHEN 'Hospital' THEN 'Hospital/Institutional'
+            WHEN 'Hotel' THEN 'Hotel/Motel'
+            WHEN 'Industrial' THEN 'Industrial/Factory Buildings'
+            WHEN 'Library' THEN 'Library'
+            WHEN 'Manufacturing' THEN 'Manufacturing'
+            WHEN 'Multifamily' THEN 'Multifamily +3'
+            WHEN 'Municipal' THEN 'Municipal'
+            WHEN 'Nursery' THEN 'Nursery/Greenhouse'
+            WHEN 'Office' THEN 'Office/Bank Buildings'
+            WHEN 'ParkingGarage' THEN 'Parking Garage'
+            WHEN 'Police' THEN 'Police Station'
+            WHEN 'PublicWorks' THEN 'Public Works/Utility Building'
+            WHEN 'Restaurant' THEN 'Restaurant'
+            WHEN 'RetailStores' THEN 'Retail Stores/Mercantile'
+            WHEN 'School' THEN 'School/Educational Buildings'
+            WHEN 'Services' THEN 'Service Stations'
+            WHEN 'Supermarket' THEN 'Supermarket'
+            WHEN 'Theater' THEN 'Theater/Recreational'
+            WHEN 'Town' THEN 'Town House'
+            WHEN 'Training' THEN 'Training Center'
+            WHEN 'TreatmentPlant' THEN 'Treatment Plant'
+            WHEN 'Two' THEN 'Two Family'
+            WHEN 'Warehouse' THEN 'Warehouse/Storage'
+            WHEN 'WellnessCenter' THEN 'Wellness Center'
+            ELSE NULL 
+        END
+END AS BUILDING_TYPE,
+
+--CURRENT_DATE
+
+ CASE 
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 1 THEN 'January'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 2 THEN 'February'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 3 THEN 'March'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 4 THEN 'April'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 5 THEN 'May'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 6 THEN 'June'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 7 THEN 'July'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 8 THEN 'August'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 9 THEN 'September'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 10 THEN 'October'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 11 THEN 'November'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 12 THEN 'December'
+        ELSE NULL 
+    END || ' ' ||
+    EXTRACT(DAY FROM CURRENT_DATE) || ', ' ||
+    EXTRACT(YEAR FROM CURRENT_DATE) AS CURRENT_DATE
+    
+
+
+
+
+FROM PSC_LNP_RECORD
+WHERE LNP_RECORD_ID = :P_LNP_RECORD_ID
+ORDER BY CREATION_DATE DESC
