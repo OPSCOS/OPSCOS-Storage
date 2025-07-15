@@ -1,0 +1,208 @@
+SELECT
+    A.LNP_RECORD_KEY,
+    A.LNP_RECORD_ID,
+    A.EXTN_ATTRIBUTE_CHAR016 AS BLOCK_NUMBER,
+    A.EXTN_ATTRIBUTE_NUMBER004 AS AREA_IN_ACRES,
+    A.EXTN_ATTRIBUTE_CHAR017	AS LEGAL_DESCRIPTION,	
+    A.PERSON_NAME AS APPLICANT,
+    A.ADDRESS1 AS APPLICANT_ADDRESS1,
+    A.CITY ||' '|| A.STATE ||' '|| A.POSTAL_CODE AS APPLICANT_ADDRESS2,
+    A.ORGANIZATION_NAME AS APPLICANT_BUS_NAME,
+    A.EMAIL_ADDRESS1 AS APPLICANT_EMAIL,
+    A.DESCRIPTION,
+    
+
+
+    -- Current Plan Categories
+    CASE A.EXTN_ATTRIBUTE_CHAR014
+        WHEN 'TODD' THEN '16 (Transit Oriented Development District)'
+        WHEN 'com1' THEN '6 (Commercial - Neighborhood Business)'
+        WHEN 'com2' THEN '7 (Commercial - Arterial)'
+        WHEN 'downtown' THEN '11 (Downtown)'
+        WHEN 'industrial1' THEN '12 (Industrial - Water-Dependent)'
+        WHEN 'industrial2' THEN '13 (Industrial - General)'
+        WHEN 'mixed' THEN '8 (Mixed Use- Campus)'
+        WHEN 'open1' THEN '14 (Open Space - Public Parks)'
+        WHEN 'open2' THEN '15 (Open Spacr/Conservation Overlay)'
+        WHEN 'res1' THEN '1 (Residential - Very Low Density Single-Family)'
+        WHEN 'res2' THEN '2 (Residential - Low Density Single-Family)'
+        WHEN 'res3' THEN '3 (Residential - Low Density Multifamily)'
+        WHEN 'res4' THEN '4 (Residential - Medium Density Multifamily)'
+        WHEN 'res5' THEN '5 (Residential - High Density Multifamily)'
+        WHEN 'shore' THEN '10 (Shorefront Mixed-Use)'
+        WHEN 'urban' THEN '9 (Urban Mixed-Use)'
+        ELSE NULL
+    END AS CURRENT_MASTER_PLAN_CATEGORY,
+
+    -- Proposed Plan Categories
+    CASE A.EXTN_ATTRIBUTE_CHAR015
+        WHEN 'TODD' THEN '16 (Transit Oriented Development District)'
+        WHEN 'com1' THEN '6 (Commercial - Neighborhood Business)'
+        WHEN 'com2' THEN '7 (Commercial - Arterial)'
+        WHEN 'downtown' THEN '11 (Downtown)'
+        WHEN 'industrial1' THEN '12 (Industrial - Water-Dependent)'
+        WHEN 'industrial2' THEN '13 (Industrial - General)'
+        WHEN 'mixed' THEN '8 (Mixed Use- Campus)'
+        WHEN 'open1' THEN '14 (Open Space - Public Parks)'
+        WHEN 'open2' THEN '15 (Open Spacr/Conservation Overlay)'
+        WHEN 'res1' THEN '1 (Residential - Very Low Density Single-Family)'
+        WHEN 'res2' THEN '2 (Residential - Low Density Single-Family)'
+        WHEN 'res3' THEN '3 (Residential - Low Density Multifamily)'
+        WHEN 'res4' THEN '4 (Residential - Medium Density Multifamily)'
+        WHEN 'res5' THEN '5 (Residential - High Density Multifamily)'
+        WHEN 'shore' THEN '10 (Shorefront Mixed-Use)'
+        WHEN 'urban' THEN '9 (Urban Mixed-Use)'
+        ELSE NULL
+    END AS PROPOSED_MASTER_PLAN_CATEGORY,
+
+    -- Formatted Current Date
+    CASE 
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 1 THEN 'January'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 2 THEN 'February'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 3 THEN 'March'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 4 THEN 'April'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 5 THEN 'May'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 6 THEN 'June'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 7 THEN 'July'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 8 THEN 'August'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 9 THEN 'September'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 10 THEN 'October'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 11 THEN 'November'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 12 THEN 'December'
+        ELSE NULL 
+    END || ' ' || EXTRACT(DAY FROM CURRENT_DATE) || ', ' || EXTRACT(YEAR FROM CURRENT_DATE) AS CURRENT_DATE,
+
+
+
+  CASE 
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 1 THEN 'January'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 2 THEN 'February'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 3 THEN 'March'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 4 THEN 'April'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 5 THEN 'May'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 6 THEN 'June'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 7 THEN 'July'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 8 THEN 'August'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 9 THEN 'September'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 10 THEN 'October'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 11 THEN 'November'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 12 THEN 'December'
+        ELSE NULL
+
+END AS CURRENT_MONTH,
+
+
+
+
+EXTRACT(DAY FROM CURRENT_DATE) AS CURRENT_DAY,
+
+
+
+
+EXTRACT(YEAR FROM CURRENT_DATE) AS CURRENT_YEAR,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    -- OWNER_NAME Logic
+    CASE 
+        WHEN A.EXTN_ATTRIBUTE_CHAR006 = 'NO' THEN B.EXTN_ATTRIBUTE_CHAR003
+        WHEN A.EXTN_ATTRIBUTE_CHAR006 = 'YES' THEN 
+            CASE 
+                WHEN A.EXTN_ATTRIBUTE_CHAR008 = 'YES' THEN A.PERSON_NAME
+                WHEN A.EXTN_ATTRIBUTE_CHAR008 = 'NO' THEN B.EXTN_ATTRIBUTE_CHAR003
+                ELSE NULL
+            END
+        ELSE NULL
+    END AS OWNER_NAME,
+
+    -- OWN_FIRST_LINE (address before "STAMFORD")
+    CASE 
+        WHEN A.EXTN_ATTRIBUTE_CHAR006 = 'NO' THEN 
+            CASE 
+                WHEN INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD') > 0 
+                THEN SUBSTR(B.EXTN_ATTRIBUTE_CHAR004, 1, INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD') - 1)
+                ELSE ' '
+            END
+        WHEN A.EXTN_ATTRIBUTE_CHAR006 = 'YES' THEN 
+            CASE 
+                WHEN A.EXTN_ATTRIBUTE_CHAR008 = 'NO' THEN 
+                    CASE 
+                        WHEN INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD') > 0 
+                        THEN SUBSTR(B.EXTN_ATTRIBUTE_CHAR004, 1, INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD') - 1)
+                        ELSE ' '
+                    END
+                WHEN A.EXTN_ATTRIBUTE_CHAR008 = 'YES' THEN A.ADDRESS1
+                ELSE NULL
+            END
+        ELSE NULL
+    END AS OWN_FIRST_LINE,
+
+    -- OWN_SECOND_LINE (starting from "STAMFORD")
+    CASE 
+        WHEN A.EXTN_ATTRIBUTE_CHAR006 = 'NO' THEN 
+            CASE 
+                WHEN INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD') > 0 
+                THEN SUBSTR(B.EXTN_ATTRIBUTE_CHAR004, INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD'))
+                ELSE ' '
+            END
+        WHEN A.EXTN_ATTRIBUTE_CHAR006 = 'YES' THEN 
+            CASE 
+                WHEN A.EXTN_ATTRIBUTE_CHAR008 = 'NO' THEN 
+                    CASE 
+                        WHEN INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD') > 0 
+                        THEN SUBSTR(B.EXTN_ATTRIBUTE_CHAR004, INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD'))
+                        ELSE ' '
+                    END
+                WHEN A.EXTN_ATTRIBUTE_CHAR008 = 'YES' THEN A.CITY || ', ' || A.STATE || ' ' || A.POSTAL_CODE
+                ELSE NULL
+            END
+        ELSE NULL
+    END AS OWN_SECOND_LINE,
+    
+    
+    
+   -- OWNER_NAME Logic
+    CASE 
+        WHEN A.EXTN_ATTRIBUTE_CHAR006 = 'NO' THEN B.EXTN_ATTRIBUTE_CHAR003
+        WHEN A.EXTN_ATTRIBUTE_CHAR006 = 'YES' THEN 
+            CASE 
+                WHEN A.EXTN_ATTRIBUTE_CHAR008 = 'YES' THEN A.EMAIL_ADDRESS1
+                WHEN A.EXTN_ATTRIBUTE_CHAR008 = 'NO' THEN B.EXTN_ATTRIBUTE_CHAR003
+                ELSE NULL
+            END
+        ELSE NULL
+    END AS OWNER_EMAIL,   
+    
+    
+     -- OWNER_NAME Logic
+    CASE 
+        WHEN A.EXTN_ATTRIBUTE_CHAR006 = 'NO' THEN B.EXTN_ATTRIBUTE_CHAR005		
+        WHEN A.EXTN_ATTRIBUTE_CHAR006 = 'YES' THEN 
+            CASE 
+                WHEN A.EXTN_ATTRIBUTE_CHAR008 = 'YES' THEN A.PHONE_NUMBER
+                WHEN A.EXTN_ATTRIBUTE_CHAR008 = 'NO' THEN B.EXTN_ATTRIBUTE_CHAR005
+                ELSE NULL
+            END
+        ELSE NULL
+    END AS OWNER_PHONE_NUM
+    
+    
+    
+    
+
+FROM PSC_LNP_RECORD A
+LEFT JOIN PSC_TS_GRID_RECORD B
+  ON A.LNP_RECORD_KEY = B.EXTN_ATTRIBUTE_NUMBER001 
+  AND B.ATTRIBUTE_CATEGORY = 'PZ1MasterPlanMapChng1g1_c' 
+WHERE A.LNP_RECORD_KEY = :P_LNP_RECORD_KEY
