@@ -1,0 +1,188 @@
+SELECT
+A.LNP_RECORD_KEY,
+A.LNP_RECORD_ID,
+A.PERSON_NAME AS APPLICANT,
+A.ADDRESS1 AS APPLICANT_ADDRESS1,
+A.CITY ||' '|| A.STATE ||' '|| A.POSTAL_CODE AS APPLICANT_ADDRESS2,
+A.EXTN_ATTRIBUTE_CHAR009 AS BLOCK_NUM,
+A.EXTN_ATTRIBUTE_CHAR014 AS PROPERTY_LOCATION_INPUTTED,
+A.EXTN_ATTRIBUTE_CHAR019 AS AREA_IN_ACRES,
+A.EXTN_ATTRIBUTE_CHAR020 AS LEGAL_DESCRIPTION, 
+A.EXTN_ATTRIBUTE_CHAR021 AS ACCOUNT_NUMBER,
+A.EXTN_ATTRIBUTE_NUMBER004 AS LOT_DIVISION,
+
+
+A.ORGANIZATION_NAME AS APPLICANT_BUS_NAME,
+A.EMAIL_ADDRESS1 AS APPLICANT_EMAIL,
+A.DESCRIPTION, 
+
+
+
+--Current Plan Categories --
+
+CASE A.EXTN_ATTRIBUTE_CHAR017									
+	WHEN 'ard_d' THEN 'ARD-D Architectural Review Design District'
+    WHEN 'b_d' THEN 'B-D Design Business District'
+    WHEN 'c_b' THEN 'C-B Community Business District'
+    WHEN 'c_c' THEN 'C-C Center City District'
+    WHEN 'c_d' THEN 'C-D Design Commercial District'
+    WHEN 'c_g' THEN 'C-G General Commercial District'
+    WHEN 'c_i' THEN 'C-I Intermediate Commercial District'
+    WHEN 'c_l' THEN 'C-L Limited Business District'
+    -----
+    WHEN 'c_n' THEN 'C-N Neighborhood Business District'
+    WHEN 'c_wd' THEN 'C-WD Coastal Water Dependent District'
+    WHEN 'csc_d' THEN 'CSC-D Design Community Shopping Center District'
+    WHEN 'dw_d' THEN 'DW-D Design Waterfront Development District'
+    WHEN 'hcd_d' THEN 'HCD-D Hospital Complex Design District'
+    WHEN 'ht_d' THEN 'HT-D Design High-Technology District'
+    WHEN 'ip_d' THEN 'IP-D Design Industrial Park District'
+    WHEN 'm_d' THEN 'M-D Design Industrial District'
+    ----
+    WHEN 'm_g' THEN 'M-G General Industrial District'
+    WHEN 'm_l' THEN 'M-L Light Industrial District'
+    WHEN 'mrd_d' THEN 'MRD-D Design Mill River District'
+    WHEN 'mx_d' THEN 'MX-D Mixed Use Development District'
+    WHEN 'nx_d' THEN 'NX-D Neighborhood Mixed-Use Design District'
+    WHEN 'p' THEN 'P Park District'
+    WHEN 'p_d' THEN 'P-D Planned Development District'
+    WHEN 'r_10' THEN 'R-10 One-Family Residence District'
+    -----
+    WHEN 'r_20' THEN 'R-20 One-Family Residence District'
+    WHEN 'r_5' THEN 'R-5 Multiple Family, Medium Density Design District'
+    WHEN 'r_6' THEN 'R-6 One-Family, Two-Family Residence District'
+    WHEN 'r_7.5' THEN 'R-7.5 One-Family Residence District'
+    WHEN 'r_d' THEN 'R-D Design Residence District'
+    WHEN 'r_h' THEN 'R-H Multiple Family Design District, High Density'
+    WHEN 'r_hd' THEN 'R-HD Multiple-Family, High Density'
+    WHEN 'r_mf' THEN 'R-MF Multiple Family Residence Design District'
+    -----
+    WHEN 'ra_1'THEN 'RA-1 One-Family Residence District'
+    WHEN 'ra_2' THEN 'RA-2 One-Family Residence District'
+    WHEN 'ra-3' THEN 'RA-3 One-Family Residence District'
+    WHEN 'rm_1' THEN 'RM-1 Multiple Family, Low Density Design District'
+    WHEN 'srd_n' THEN 'SRD-N South End Redevelopment District, North'
+    WHEN 'srd_s' THEN 'SRD_S South End Redevelopment District, South'
+    WHEN 'tcd_d' THEN 'TCD-D Design Transportation Center District'
+    WHEN 'v_c' THEN 'V-C Village Commercial District'
+    
+    ELSE NULL
+    END AS ZONING_DISTRICT,
+   
+   
+
+
+
+ CASE 
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 1 THEN 'January'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 2 THEN 'February'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 3 THEN 'March'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 4 THEN 'April'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 5 THEN 'May'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 6 THEN 'June'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 7 THEN 'July'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 8 THEN 'August'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 9 THEN 'September'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 10 THEN 'October'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 11 THEN 'November'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 12 THEN 'December'
+        ELSE NULL 
+    END || ' ' ||
+    EXTRACT(DAY FROM CURRENT_DATE) || ', ' ||
+    EXTRACT(YEAR FROM CURRENT_DATE) AS CURRENT_DATE,
+    
+    EXTRACT(YEAR FROM CURRENT_DATE) AS CURRENT_YEAR,
+     EXTRACT(DAY FROM CURRENT_DATE) AS CURRENT_DAY,
+     
+    CASE 
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 1 THEN 'January'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 2 THEN 'February'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 3 THEN 'March'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 4 THEN 'April'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 5 THEN 'May'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 6 THEN 'June'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 7 THEN 'July'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 8 THEN 'August'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 9 THEN 'September'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 10 THEN 'October'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 11 THEN 'November'
+        WHEN EXTRACT(MONTH FROM CURRENT_DATE) = 12 THEN 'December'
+        ELSE NULL 
+        END AS CURRENT_MONTH,
+    
+CASE 
+	WHEN A.EXTN_ATTRIBUTE_CHAR013 = 'NO' THEN B.EXTN_ATTRIBUTE_CHAR003			
+	WHEN A.EXTN_ATTRIBUTE_CHAR013 = 'YES' THEN 
+    			CASE 
+                	WHEN A.EXTN_ATTRIBUTE_CHAR015 = 'NO' THEN B.EXTN_ATTRIBUTE_CHAR003
+                    WHEN A.EXTN_ATTRIBUTE_CHAR015 = 'YES' THEN A.PERSON_NAME
+                    ELSE NULL
+               END
+               
+ELSE NULL
+END AS OWNER_NAME,
+
+
+
+CASE 
+	WHEN A.EXTN_ATTRIBUTE_CHAR013 = 'NO' THEN 
+    		CASE 
+                WHEN INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD') > 0 
+                THEN SUBSTR(B.EXTN_ATTRIBUTE_CHAR004, 1, INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD') - 1)
+                ELSE B.EXTN_ATTRIBUTE_CHAR004
+            END
+	WHEN A.EXTN_ATTRIBUTE_CHAR013 = 'YES' THEN  
+    		 CASE 
+                WHEN A.EXTN_ATTRIBUTE_CHAR015 = 'NO' THEN 
+                    CASE 
+                        WHEN INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD') > 0 
+                        THEN SUBSTR(B.EXTN_ATTRIBUTE_CHAR004, 1, INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD') - 1)
+                        ELSE B.EXTN_ATTRIBUTE_CHAR004
+                    END
+                WHEN A.EXTN_ATTRIBUTE_CHAR015 = 'YES' THEN A.ADDRESS1
+                ELSE NULL
+            END
+     ELSE NULL
+    END AS OWN_FIRST_LINE,    
+ 
+ 
+ 
+ CASE 
+	WHEN A.EXTN_ATTRIBUTE_CHAR013 = 'NO' THEN 
+    		CASE 
+                WHEN INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD') > 0 
+                THEN SUBSTR(B.EXTN_ATTRIBUTE_CHAR004, INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD'))
+                ELSE B.EXTN_ATTRIBUTE_CHAR004
+            END
+    WHEN A.EXTN_ATTRIBUTE_CHAR013 = 'YES' THEN 
+    		CASE 
+                WHEN A.EXTN_ATTRIBUTE_CHAR015 = 'NO' THEN 
+                    CASE 
+                        WHEN INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD') > 0 
+                        THEN SUBSTR(B.EXTN_ATTRIBUTE_CHAR004, INSTR(UPPER(B.EXTN_ATTRIBUTE_CHAR004), 'STAMFORD'))
+                        ELSE B.EXTN_ATTRIBUTE_CHAR004
+                    END
+                WHEN A.EXTN_ATTRIBUTE_CHAR015 = 'YES' THEN A.CITY || ', ' || A.STATE || ' ' || A.POSTAL_CODE
+                ELSE NULL
+            END
+            
+      ELSE NULL
+ END AS OWN_SECOND_LINE,
+
+
+ 
+ C.EXTN_ATTRIBUTE_CHAR003 AS CO_APPLICANT_NAME
+	
+
+ 
+ 
+ 
+
+FROM PSC_LNP_RECORD A
+LEFT JOIN PSC_TS_GRID_RECORD B
+ON A.LNP_RECORD_KEY = B.EXTN_ATTRIBUTE_NUMBER001 
+ AND B.ATTRIBUTE_CATEGORY = 'PZ1PlanSubDivision2g1_c'
+ LEFT JOIN PSC_TS_GRID_RECORD C
+  ON A.LNP_RECORD_KEY = C.EXTN_ATTRIBUTE_NUMBER002
+  AND C.ATTRIBUTE_CATEGORY = 'PZ1SpecialPermit1g3_c'
+WHERE A.LNP_RECORD_KEY = :P_LNP_RECORD_KEY
