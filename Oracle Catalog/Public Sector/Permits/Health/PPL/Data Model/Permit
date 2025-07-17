@@ -1,0 +1,53 @@
+SELECT
+/*SECTION A PERMIT - GENERAL*/
+A.LNP_RECORD_KEY,
+A.LNP_RECORD_ID,
+A.ATTRIBUTE_CATEGORY,
+A.PERSON_FIRST_NAME || ' ' || A.PERSON_LAST_NAME AS APPLICANT_NAME, 
+A.EXTN_ATTRIBUTE_CHAR005 AS OPERATORS_NAME,
+A.BUS_BUSINESS_LEGAL_NAME AS BUS_NAME,
+/*DATES AND TIMES SECTION A*/
+'Jaunuary 1, ' || EXTRACT(YEAR FROM A.ISSUE_DATE) AS ISSUE_DATE, 
+'December 31, ' || EXTRACT(YEAR FROM A.ISSUE_DATE) AS EXPIRATION_DATE,
+
+--------------------------------------------------------------------------------------------
+/*SECTION B PARCEL ADDRESS*/
+B.PARCEL_KEY,
+B.ADDRESS1 || ' ' ||  B.CITY || ' , '|| B.STATE || ' ' || B.POSTAL_CODE AS PARCEL_ADDRESS,
+
+---------------------------------------------------------------------------------------------
+
+/*SECTION D TABLE FOR POOL TYPE*/
+
+CASE D.EXTN_ATTRIBUTE_CHAR003			
+	WHEN 'Indoor' then 'Indoor'
+	WHEN 'Outdoor' then 'Outdoor'
+	ELSE NULL
+END AS POOL_LOCATION,
+
+CASE D.EXTN_ATTRIBUTE_CHAR004	 		
+	WHEN 'IndoorIn' THEN 'Indoor - In-Ground'
+    WHEN 'OutAbove' THEN 'Outdoor - Above Ground'
+    WHEN 'OutIn' THEN 'Outdoor - In-Ground'
+    ELSE NULL
+END AS POOL_TYPE,
+
+CASE D.EXTN_ATTRIBUTE_CHAR005			
+	WHEN 'HotTubJacuzzi' THEN 'Hot Tub / Jacuzzi'
+    WHEN 'SpraySplah' THEN 'Spray Pad / Slash Pad'
+    WHEN 'SwimmingPool' THEN 'Swimming Pool'
+    WHEN 'TherapyPool' THEN 'Therapy Pool'
+    WHEN 'WadingPool' THEN 'Wading Pool'
+    ELSE NULL 
+END AS RECREATION_POOL_TYPE
+
+
+FROM PSC_LNP_RECORD A
+INNER JOIN 
+	PSC_LNP_PARCEL_ADDRESS B ON A.LNP_RECORD_KEY = B.LNP_RECORD_KEY
+INNER JOIN 
+	PSC_TS_GRID_RECORD D ON A.LNP_RECORD_KEY = D.EXTN_ATTRIBUTE_NUMBER001
+
+WHERE A.LNP_RECORD_KEY = :P_LNP_RECORD_KEY
+    AND B.PRIMARY_FLAG = 'Y'
+	AND B.PRIMARY_TRANS_ADDRESS = 'Y'
