@@ -1,0 +1,99 @@
+SELECT
+
+    /* SECTION A [PERMIT] */
+    A.LNP_RECORD_KEY,
+    A.LNP_RECORD_ID,
+    A.ATTRIBUTE_CATEGORY,
+    A.PERSON_FIRST_NAME || ' ' || A.PERSON_LAST_NAME AS APPLICANT_NAME,
+    A.BUS_BUSINESS_LEGAL_NAME AS DBA,
+
+    /* DATES AND TIMES */
+    'January 1, ' || EXTRACT(YEAR FROM A.ISSUE_DATE) AS ISSUE_DATE,
+    'December 31, ' || EXTRACT(YEAR FROM A.ISSUE_DATE) AS EXPIRATION_DATE,
+    /*INSPECTION TYPE*/
+    CASE A.EXTN_ATTRIBUTE_CHAR011
+    	WHEN 'OilTruck' THEN 'Oil Truck Meters'
+        WHEN 'RM' THEN 'Retail Moter Fuel Meter (Gas Pump(s))'
+        WHEN 'Taxi' THEN 'Taximeter'
+		WHEN 'WM' THEN 'Point of Sale Scale(s)'
+    ELSE NULL
+    END AS INSPECTION_TYPE,
+    
+    /*NAME OF COMPANY/ESTABLISHMENT*/
+    CASE 
+    WHEN A.EXTN_ATTRIBUTE_CHAR011 = 'OilTruck' THEN A.EXTN_ATTRIBUTE_CHAR019			
+    ELSE NULL 
+    END AS NAME_OF_COMPANY,
+    
+    /*Loccation of Trucks*/
+    CASE 
+    WHEN A.EXTN_ATTRIBUTE_CHAR011 = 'OilTruck' THEN  A.EXTN_ATTRIBUTE_CHAR038	
+    ELSE NULL
+    END AS LOACTION_TRUCKS_STORED,
+    
+     /*TRUCK TYPE*/
+    CASE A.EXTN_ATTRIBUTE_CHAR025	
+    WHEN 'Deliver' THEN 'Deliver Rack Meter'
+    WHEN 'Load'THEN 'Load Rack Meter'
+    ELSE NULL 
+    END AS TRUCK_TYPE,
+     
+     
+    ------------------------------------------------------------------------------------------
+
+    /* SECTION B [PARCEL ADDRESS] */
+    B.PARCEL_KEY,
+    B.ADDRESS1 || ' ' || B.CITY || ', ' || B.STATE || ' ' || B.POSTAL_CODE AS PARCEL_ADDRESS,
+    
+	------------------------------------------------------------------------------------------
+    /* SECTION C [FEES] */
+    TO_CHAR(SUM(DISTINCT C.FEE_AMOUNT), 'L9G999G999G999D99') AS FEES_PAID,
+    
+    ------------------------------------------------------------------------------------------
+    /*SECTION D [GRID TABLE]*/
+    D.EXTN_ATTRIBUTE_CHAR003 AS LICENSE_PLATE_NUM,
+    D.EXTN_ATTRIBUTE_CHAR004 AS MAKE,
+    D.EXTN_ATTRIBUTE_CHAR005 AS MODEL,
+    D.EXTN_ATTRIBUTE_CHAR006 AS YEAR,
+    D.EXTN_ATTRIBUTE_CHAR007 AS REGISTRATION
+    
+
+FROM PSC_LNP_RECORD A
+------------------------------------------
+INNER JOIN PSC_LNP_PARCEL_ADDRESS B 
+    ON A.LNP_RECORD_KEY = B.LNP_RECORD_KEY
+INNER JOIN PSC_LNP_FEE_RECORD C 
+    ON A.LNP_RECORD_KEY = C.LNP_RECORD_KEY
+INNER JOIN PSC_TS_GRID_RECORD D 
+	ON A.LNP_RECORD_KEY = D.EXTN_ATTRIBUTE_NUMBER001
+
+-------------------------------------------
+WHERE A.LNP_RECORD_KEY = :P_LNP_RECORD_KEY
+    AND B.PRIMARY_FLAG = 'Y'
+    AND B.PRIMARY_TRANS_ADDRESS = 'Y'
+    AND D.ATTRIBUTE_CATEGORY = 'LIC1WeightMeas1g1_c'
+
+
+-------------------------------------------
+GROUP BY 
+    A.LNP_RECORD_KEY,
+    A.LNP_RECORD_ID,
+    A.ATTRIBUTE_CATEGORY,
+    A.PERSON_FIRST_NAME,
+    A.PERSON_LAST_NAME,
+    A.BUS_BUSINESS_LEGAL_NAME,
+    A.ISSUE_DATE,
+    A.EXTN_ATTRIBUTE_CHAR011,
+    A.EXTN_ATTRIBUTE_CHAR019,
+    A.EXTN_ATTRIBUTE_CHAR038,
+    A.EXTN_ATTRIBUTE_CHAR025,
+    B.PARCEL_KEY,
+    B.ADDRESS1,
+    B.CITY,
+    B.STATE,
+    B.POSTAL_CODE,
+    D.EXTN_ATTRIBUTE_CHAR003,
+    D.EXTN_ATTRIBUTE_CHAR004,
+    D.EXTN_ATTRIBUTE_CHAR005,
+    D.EXTN_ATTRIBUTE_CHAR006,
+    D.EXTN_ATTRIBUTE_CHAR007
