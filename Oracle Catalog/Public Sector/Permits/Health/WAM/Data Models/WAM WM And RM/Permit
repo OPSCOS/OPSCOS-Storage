@@ -1,0 +1,94 @@
+SELECT
+
+    /* SECTION A [PERMIT] */
+    A.LNP_RECORD_KEY,
+    A.LNP_RECORD_ID,
+    A.ATTRIBUTE_CATEGORY,
+    A.PERSON_FIRST_NAME || ' ' || A.PERSON_LAST_NAME AS APPLICANT_NAME,
+    A.BUS_BUSINESS_LEGAL_NAME AS DBA,
+
+    /* DATES AND TIMES */
+    'January 1, ' || EXTRACT(YEAR FROM A.ISSUE_DATE) AS ISSUE_DATE,
+    'December 31, ' || EXTRACT(YEAR FROM A.ISSUE_DATE) AS EXPIRATION_DATE,
+    /*INSPECTION TYPE*/
+    CASE A.EXTN_ATTRIBUTE_CHAR011
+    	WHEN 'OilTruck' THEN 'Oil Truck Meters'
+        WHEN 'RM' THEN 'Retail Moter Fuel Meter (Gas Pump(s))'
+        WHEN 'Taxi' THEN 'Taximeter'
+		WHEN 'WM' THEN 'Point of Sale Scale(s)'
+    ELSE NULL
+    END AS INSPECTION_TYPE,
+    
+    /*NAME OF COMPANY/ESTABLISHMENT*/
+    CASE 
+    WHEN A.EXTN_ATTRIBUTE_CHAR011 = 'WM' THEN A.EXTN_ATTRIBUTE_CHAR004	
+    WHEN A.EXTN_ATTRIBUTE_CHAR011 = 'RM' THEN A.EXTN_ATTRIBUTE_CHAR004
+    WHEN A.EXTN_ATTRIBUTE_CHAR011 = 'OilTruck' THEN A.EXTN_ATTRIBUTE_CHAR019			
+    ELSE NULL 
+    END AS NAME_OF_COMPANY,
+    
+    /*WM NUM OF SCALES UNDER 50*/
+    CASE 
+    WHEN A.EXTN_ATTRIBUTE_CHAR011 = 'WM' THEN CONCAT('Number of Scales 0-50lbs: ', A.EXTN_ATTRIBUTE_NUMBER005) 			
+	ELSE NULL
+    END AS SCALES_UNDER_50,
+    
+	 /*WM NUM OF SCALES OVER 50*/
+    CASE 
+    WHEN A.EXTN_ATTRIBUTE_CHAR011 = 'WM' THEN CONCAT('Number of Scales Over 50lbs: ', A.EXTN_ATTRIBUTE_NUMBER006) 			
+	ELSE NULL
+    END AS SCALES_OVER_50,
+    
+    /* RM RETAIL MOTER FUEL METERS */
+    CASE 
+    WHEN A.EXTN_ATTRIBUTE_CHAR011 = 'RM' THEN CONCAT('Number of Retail Motor Fuel Meters: ', A.EXTN_ATTRIBUTE_CHAR040) 
+    else NULL
+    end as RETAIL_MOTOR_FUEL_METERS,
+    
+    
+    ------------------------------------------------------------------------------------------
+
+    /* SECTION B [PARCEL ADDRESS] */
+    B.PARCEL_KEY,
+    B.ADDRESS1 || ' ' || B.CITY || ', ' || B.STATE || ' ' || B.POSTAL_CODE AS PARCEL_ADDRESS,
+    
+	------------------------------------------------------------------------------------------
+    /* SECTION C [FEES] */
+    TO_CHAR(SUM(C.FEE_AMOUNT), 'L9G999G999G999D99') AS FEES_PAID
+    
+    
+
+FROM PSC_LNP_RECORD A
+------------------------------------------
+INNER JOIN PSC_LNP_PARCEL_ADDRESS B 
+    ON A.LNP_RECORD_KEY = B.LNP_RECORD_KEY
+INNER JOIN PSC_LNP_FEE_RECORD C 
+    ON A.LNP_RECORD_KEY = C.LNP_RECORD_KEY
+
+
+-------------------------------------------
+WHERE A.LNP_RECORD_KEY = :P_LNP_RECORD_KEY
+    AND B.PRIMARY_FLAG = 'Y'
+    AND B.PRIMARY_TRANS_ADDRESS = 'Y'
+
+
+-------------------------------------------
+GROUP BY 
+    A.LNP_RECORD_KEY,
+    A.LNP_RECORD_ID,
+    A.ATTRIBUTE_CATEGORY,
+    A.PERSON_FIRST_NAME,
+    A.PERSON_LAST_NAME,
+    A.BUS_BUSINESS_LEGAL_NAME,
+    A.ISSUE_DATE,
+    A.EXTN_ATTRIBUTE_CHAR011,
+    A.EXTN_ATTRIBUTE_CHAR004,
+    A.EXTN_ATTRIBUTE_CHAR019,
+    A.EXTN_ATTRIBUTE_NUMBER005,
+    A.EXTN_ATTRIBUTE_NUMBER006,
+    A.EXTN_ATTRIBUTE_CHAR040,
+    B.PARCEL_KEY,
+    B.ADDRESS1,
+    B.CITY,
+    B.STATE,
+    B.POSTAL_CODE
