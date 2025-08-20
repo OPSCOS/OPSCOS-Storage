@@ -1,0 +1,1387 @@
+<style>
+    body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f8f8;
+    padding: 2rem;
+    margin: 0;
+    line-height: 1.5;
+    }
+    .food-inspection-container {
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    padding: 2rem;
+    }
+    .inspection-main-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+    }
+    .inspection-subtitle {
+    font-size: 1.5rem;
+    color: #374151;
+    margin-bottom: 1.5rem;
+    }
+    .inspection-contact-info {
+    color: #374151;
+    margin-bottom: 2rem;
+    font-style: italic;
+    }
+    .inspection-contact-info a {
+    color: #2563eb;
+    text-decoration: none;
+    }
+    .inspection-contact-info a:hover {
+    text-decoration: underline;
+    }
+    .inspection-form-business,
+    .inspection-form-group {
+    margin-bottom: 1.5rem;
+    }
+    .inspection-form-business label,
+    .inspection-form-group label {
+    display: block;
+    color: #374151;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    }
+    .inspection-form-textbox {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #000;
+    border-radius: 0.125rem;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 1.125rem;
+    }
+    .inspection-form-textbox:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+    }
+    .inspection-select-container {
+    display: flex;
+    border: 1px solid #000;
+    border-radius: 0.125rem;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+    }
+    .inspection-form-select {
+    flex-grow: 1;
+    appearance: none;
+    background-color: #ffffff;
+    border: none;
+    color: #374151;
+    padding: 0.75rem 1rem;
+    padding-right: 2.5rem;
+    line-height: 1.25;
+    outline: none;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 1.125rem;
+    }
+    .inspection-form-select:focus {
+    border-color: transparent;
+    box-shadow: none;
+    }
+    .inspection-custom-arrow {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    z-index: 10;
+    }
+    .inspection-custom-arrow svg {
+    fill: #3b82f6;
+    height: 1rem;
+    width: 1rem;
+    }
+    #search {
+    background-color: #2563eb;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+    font-size: 1.125rem;
+    }
+    #search:hover {
+    background-color: #1d4ed8;
+    }
+    #search:focus {
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5), 0 0 0 4px rgba(59, 130, 246, 0.25);
+    }
+    .alphabet-filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    justify-content: left;
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    border-radius: 0.25rem;
+    background-color: #f0f0f0;
+    }
+    .alphabet-filter-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #374151;
+    background-color: #e5e7eb;
+    border-radius: 0.25rem;
+    border: 1px solid #d1d5db;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    text-decoration: none;
+    }
+    .alphabet-filter-button:hover {
+    background-color: #d1d5db;
+    }
+    .alphabet-filter-button.active {
+    background-color: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+    }
+    .display-header-container {
+    display: flex;
+    background-color: #1a2a3a;
+    color: #ffffff;
+    align-items: center;
+    box-sizing: border-box;
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    }
+    .display-header-item {
+    flex-grow: 1;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 0;
+    }
+    .display-header-item.align-right {
+    text-align: right;
+    padding: 0;
+    }
+    .display-vertical-divider {
+    width: 1px;
+    background-color: #ffffff;
+    height: 2.5rem;
+    margin: 0 1rem;
+    flex-shrink: 0;
+    }
+    .data-row-container {
+    display: flex;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    color: #333333;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 1rem 2rem;
+    }
+    .data-row-container:first-of-type {
+    border-top: 1px solid #e0e0e0;
+    }
+    .data-row-item {
+    flex-grow: 1;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: left;
+    padding: 0;
+    }
+    .data-row-item.align-right {
+    text-align: right;
+    padding: 0;
+    }
+    .data-row-item a {
+    color: #3b82f6;
+    text-decoration: none;
+    }
+    .data-row-item a:hover {
+    text-decoration: underline;
+    }
+    .data-row-vertical-divider {
+    display: none;
+    }
+    .data-results-wrapper {
+    max-height: 600px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    background-color: #ffffff;
+    }
+    @media (max-width: 600px) {
+    body {
+    padding: 1rem;
+    }
+    .food-inspection-container {
+    padding: 1rem;
+    }
+    .inspection-main-title {
+    font-size: 1.5rem;
+    }
+    .inspection-subtitle {
+    font-size: 1.25rem;
+    }
+    .inspection-form-textbox,
+    .inspection-form-select,
+    #search,
+    .alphabet-filter-button {
+    font-size: 1rem;
+    }
+    .display-header-container,
+    .data-row-container {
+    flex-direction: column;
+    padding: 1rem;
+    }
+    .display-header-item,
+    .data-row-item {
+    flex-grow: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+    }
+    .display-header-item.align-right,
+    .data-row-item.align-right {
+    text-align: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    }
+    .display-vertical-divider {
+    width: 80%;
+    height: 1px;
+    margin: 0.5rem auto;
+    }
+    .data-row-vertical-divider {
+    display: none;
+    }
+    .alphabet-filter-container {
+    gap: 0.15rem;
+    }
+    .alphabet-filter-button {
+    padding: 0.35rem 0.5rem;
+    }
+    }
+</style>
+<div class="whole-food-inspection">
+<div class="food-inspection-container">
+<h1 class="inspection-main-title">FOOD INSPECTIONS</h1>
+<p class="inspection-subtitle">Establishment Search</p>
+<p class="inspection-contact-info">
+If you have any questions please contact the Health department at <a href="mailto:stamforddirhlth@stamfordct.gov">stamforddirhlth@stamfordct.gov</a>
+</p>
+<div class="inspection-form-wrapper">
+<div class="inspection-form-business">
+<label for="business-name">BUSINESS NAME</label>
+<input type="search" id="business-name" class="inspection-form-textbox" value="" placeholder="Enter business name...">
+</div>
+<div class="inspection-form-group" style="margin-bottom: 2rem;">
+<label for="establishment-type">ESTABLISHMENT TYPE</label>
+<div class="inspection-select-container">
+<select id="establishment-type" class="inspection-form-select">
+<option value="all">Search All</option>
+<option value="service">Food Service</option>
+<option value="retail">Retail Food Store</option>
+<option value="mobile">Mobile Food</option>
+<option value="temporary">Temporary Food Event</option>
+<option value="farmers">Farmer's Market</option>
+</select>
+<div class="inspection-custom-arrow" onclick="document.getElementById('establishment-type').focus();">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+<path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
+</svg>
+</div>
+</div>
+</div>
+<button type="button" id="search" class="inspection-search-button">
+SEARCH
+</button>
+</div>
+</div>
+<div class="food-inspection-container" style="border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem; box-shadow: none;">
+<div class="alphabet-filter-container" id="alphabet-filter-container">
+</div>
+</div>
+<div class="display-header-container">
+<div class="display-header-item">BUSINESS NAME</div>
+<div class="display-vertical-divider"></div>
+<div class="display-header-item align-right">ADDRESS</div>
+</div>
+<div class="data-results-wrapper">
+<div id="data-display-area">
+</div>
+</div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// PUT INFORMATION HERE, REMEMBER THAT THE LAST LINE OF CODE DOES NOT NEED A COMMA AT THE END. DO NOT TOUCH ANYTHING ELSE. IF // ADDING MORE DATA, ADD COMMA TO THE END OF EXISTING CODE AND PASTE THE NEW CODE WITH NO COMMA AT THE END
+
+        const allBusinesses = [
+
+
+// DO NOT REMOVE ABOVE
+
+
+{ name: "Fifth Floor Kitchen ", address: "4 STAR POINT, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/243819" },
+{ name: "The Learning Center", address: "421 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/243742" },
+{ name: "Speedy's Pizzeria", address: "902 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/243540" },
+{ name: "The Village Food & Beverage LLC", address: "4 STAR POINT, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/243523" },
+{ name: "Cafe 750", address: "750 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/243342" },
+{ name: "Gourmet Galley", address: "469 Fairfield Ave., Stamford, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/243341" },
+{ name: "Woodway Beach Club", address: "95 HOBSON STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/243340" },
+{ name: "Discovery Cafe", address: "181 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/243338" },
+{ name: "Masala X", address: "133 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/243129" },
+{ name: "Ts kitchen", address: "62 MILL RIVER STREET, STAMFORD, CT 06902", establishmentType: "Temporary Food Event", url: "https://stamfordct.portal.opengov.com/records/243006" },
+{ name: "Avelino Family BBQ", address: "30 WEST BROAD STREET, STAMFORD, CT 06902", establishmentType: "Temporary Food Event", url: "https://stamfordct.portal.opengov.com/records/243005" },
+{ name: "Mao's Bao", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event", url: "https://stamfordct.portal.opengov.com/records/243004" },
+{ name: "Rosemary Group llc", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event", url: "https://stamfordct.portal.opengov.com/records/243003" },
+{ name: "Steak-In-It", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event", url: "https://stamfordct.portal.opengov.com/records/243002" },
+{ name: "Kona Ice of Stamford", address: "1040 Washington blvd, Stamford, CT 06901", establishmentType: "Temporary Food Event", url: "https://stamfordct.portal.opengov.com/records/243001" },
+{ name: "Tropical Island Spice", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event", url: "https://stamfordct.portal.opengov.com/records/243000" },
+{ name: "Los Poblanos", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event", url: "https://stamfordct.portal.opengov.com/records/242999" },
+{ name: "Greek Style Grill", address: "70 MILL RIVER STREET, STAMFORD, CT 06902", establishmentType: "Temporary Food Event", url: "https://stamfordct.portal.opengov.com/records/242998" },
+{ name: "Drop and Fry LLC", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event", url: "https://stamfordct.portal.opengov.com/records/242997" },
+{ name: "The Blind Rhino BAR", address: "1040 Washington blvd, Stamford, CT 06901", establishmentType: "Temporary Food Event", url: "https://stamfordct.portal.opengov.com/records/242996" },
+{ name: "Dig Inn", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event", url: "https://stamfordct.portal.opengov.com/records/242995" },
+{ name: "Chichos Cocina", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event", url: "https://stamfordct.portal.opengov.com/records/242994" },
+{ name: "Carvel", address: "1060 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242961" },
+{ name: "Old House Group Inc", address: "170 SELLECK STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242958" },
+{ name: "Los Poblanos Mexican Grill Food Truck", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/242946" },
+{ name: "Bartaco", address: "1 HARBOR POINT ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242941" },
+{ name: "DiMare Pastry Shop", address: "1 HARBOR POINT ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242940" },
+{ name: "Barcelona", address: "1 HARBOR POINT ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242938" },
+{ name: "The Wheel", address: "1 HARBOR POINT ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242931" },
+{ name: "TERRA GAUCHA", address: "1 HARBOR POINT ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242929" },
+{ name: "Los Poblanos Mexican Grill Food Truck", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/242928" },
+{ name: "Super chef II", address: "1125 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242888" },
+{ name: "Super chef", address: "1125 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242887" },
+{ name: "Laylas Falafel", address: "1125 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242886" },
+{ name: "Carborne food truck", address: "1125 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242885" },
+{ name: "Food truck Refinery", address: "1125 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242883" },
+{ name: "Bona Bona", address: "1125 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242881" },
+{ name: "Coco Cafe", address: "68 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242870" },
+{ name: "Third Place by Half Full Brewery", address: "575 PACIFIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242833" },
+{ name: "Finders Lane ", address: "1 HARBOR POINT ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242828" },
+{ name: "Palmer's Market", address: "1 HARBOR POINT ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242828" },
+{ name: "Chickys Grill and Pizza", address: "15 CEDAR HEIGHTS ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242825" },
+{ name: "The Americano ", address: "1 HARBOR POINT ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242824" },
+{ name: "Bedford Hall", address: "1 HARBOR POINT ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242821" },
+{ name: "Mi Ranchito I", address: "260 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242819" },
+{ name: "Hudson Social", address: "1 HARBOR POINT ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242818" },
+{ name: "Table 104", address: "1 HARBOR POINT ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242817" },
+{ name: "KFC", address: "285 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242803" },
+{ name: "Ron's Sandwich Board", address: "725 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242741" },
+{ name: "Trio Community Meals, LLC", address: "195 HILLANDALE AVENUE, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242739" },
+{ name: "Sandwich Maestro", address: "101 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242731" },
+{ name: "Robeks", address: "2397 Summer Street, Unit 2397, Stamford, Connecticut 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242730" },
+{ name: "New Covenant Center", address: "174 RICHMOND HILL AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242696" },
+{ name: "La Cabana", address: "168 RICHMOND HILL AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242669" },
+{ name: "EL Torito Deli", address: "1389 HIGH RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242589" },
+{ name: "Sweet Grace", address: "100 GREYROCK PLACE, Unit BODEGA, 7th Floor, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242557" },
+{ name: "Terra Gaucha", address: "230 TRESSER BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242556" },
+{ name: "Rosemary Group llc", address: "100 GREYROCK PLACE, Unit NAILTIQUE, Suite 201, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242555" },
+{ name: "Fruits Oasis", address: "100 GREYROCK PLACE, Unit BODEGA, 7th Floor, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242553" },
+{ name: "Kona Ice", address: "1040 Washington blvd, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242552" },
+{ name: "Stamford Marriott-Sam's American Bistro", address: "243 TRESSER BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242513" },
+{ name: "Wendy's", address: "1938 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242500" },
+{ name: "China Xpress II", address: "170 SELLECK STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242480" },
+{ name: "Old House Group ", address: "170 SELLECK STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242469" },
+{ name: "Blackstones Steakhouse", address: "101 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242447" },
+{ name: "Los Chilt Epes", address: "28 BAXTER AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/242408" },
+{ name: "Palmer's Catering Commissary Kitchen", address: "652 Glenbrook Rd, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242357" },
+{ name: "Richard & Bernie Caribbean Cuisine & Mini Market, LLC", address: "501 GLENBROOK ROAD, Unit 2, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242347" },
+{ name: "Rinaldi's Deli Grill", address: "872 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242325" },
+{ name: "Humbled Coffee House", address: "575 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242301" },
+{ name: "ShopRite Newfield ", address: "565 NEWFIELD AVENUE, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242298" },
+{ name: "Asiana Bistro", address: "844 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242293" },
+{ name: "Casa Villa Express", address: "182 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242291" },
+{ name: "ShopRite Hope street ", address: "495 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242287" },
+{ name: "Harp &Honey", address: "316 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/242215" },
+{ name: "Reddi Rooster Food Truck", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242067" },
+{ name: "Goni's Gourmet", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242064" },
+{ name: "Greek Style Grill", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242060" },
+{ name: "Steak In It", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242052" },
+{ name: "T's Wine Bar & Kitchen", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242049" },
+{ name: "Los Poblanos ", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242020" },
+{ name: "Aveliino Family Barbecue", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242017" },
+{ name: "The Blind Rhino ", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/242016" },
+{ name: "Starbucks at Barnes & Noble Booksellers", address: "1101 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241988" },
+{ name: "Sabor Latin", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241890" },
+{ name: "First Stamford Cafe, LLC", address: "151 GREENWICH AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241887" },
+{ name: "Hugos Restaurant", address: "", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241850" },
+{ name: "Lucy's Pizza Parlor", address: "157 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241848" },
+{ name: "Steel Sharpens Steel", address: "1527 BEDFORD STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241847" },
+{ name: "EMPANADAS ON THE GO", address: "1527 BEDFORD STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241839" },
+{ name: "Sushi Village ", address: "200 SHIPPAN AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241838" },
+{ name: "The Village Table", address: "1062 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241836" },
+{ name: "The Village Table", address: "1062 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241834" },
+{ name: "Stamford Church of Christ", address: "1264 HIGH RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241831" },
+{ name: "Cingari Family Market ShopRite ", address: "200 SHIPPAN AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241827" },
+{ name: "First Stamford Cafe Express", address: "151 GREENWICH AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241806" },
+{ name: "Tomato Tomato", address: "401-405 SHIPPAN AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241790" },
+{ name: "Grade A Market Commerce ", address: "1980 WEST MAIN STREET, Unit Dominos Pizza, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241740" },
+{ name: "Sushi village", address: "1980 WEST MAIN STREET, Unit Dominos Pizza, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241735" },
+{ name: "Taste of Grill III", address: "465 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/241678" },
+{ name: "Taste of Grill III", address: "465 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/241674" },
+{ name: "First Stamford Cafe", address: "151 GREENWICH AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241549" },
+{ name: "Deli Salvadoreno", address: "72 MYRTLE AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241518" },
+{ name: "CULINART - STARWOOD RESORTS & HOTEL", address: "1 STAR POINT, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241517" },
+{ name: "DA Ice Cream Truck ", address: "26 HUNDLEY COURT, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/241513" },
+{ name: "DA Ice Cream I", address: "26 KEN COURT, STAMFORD, CT 06905", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/241512" },
+{ name: "Kona Ice", address: "33 CLOVER HILL DRIVE, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/241511" },
+{ name: "Daniel's Food Truck", address: "24 HOMESTEAD AVENUE, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/241510" },
+{ name: "Taste of Grill ", address: "465 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/241506" },
+{ name: "Stamford Yacht Club Snack Bar", address: "97 OCEAN DRIVE WEST, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241433" },
+{ name: "Stamford Yatch Club ", address: "97 OCEAN DRIVE WEST, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241421" },
+{ name: "Lemonade Lab", address: "0 SHIPPAN AVENUE", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/241211" },
+{ name: "Wells Donuts LLC", address: "364 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241199" },
+{ name: "Mexicue", address: "15 HARBOR STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241140" },
+{ name: "Inspirica, Inc.", address: "712 PACIFIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241137" },
+{ name: "Los Poblanos", address: "75 TRESSER BOULEVARD, STAMFORD, CT 06901", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/241131" },
+{ name: "Guac Time", address: "457-485 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241129" },
+{ name: "Country Farm II", address: "582 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/241128" },
+{ name: "Stewart Amusement/Popcorn Trailer for St Leo Fair", address: "24 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/241126" },
+{ name: "Stewart Amusement/Ultimate Waffle for St Leo Fair", address: "24 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/241125" },
+{ name: "Guac Time", address: "457-485 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "", url: "https://stamfordct.portal.opengov.com/records/241068" },
+{ name: "16  Handles", address: "219 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241103" },
+{ name: "Subway", address: "100 GREYROCK PLACE, Unit BODEGA, 7th Floor, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241076" },
+{ name: "Mish Mosh Deli", address: "1028 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241068" },
+{ name: "Co Create Catering", address: "49 JOHN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/241038" },
+{ name: "CVS West Main", address: "1938 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/240969" },
+{ name: "The Americano", address: "688 EAST MAIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/240775" },
+{ name: "FIESTA ON MAIN", address: "251 WEST MAIN STREET, Unit MAIN, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/240770" },
+{ name: "Shah's Downtown Stamford Inc", address: "247 MAIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/240766" },
+{ name: "Fiddler's Green", address: "280 SHIPPAN AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/240760" },
+{ name: "Garden Catering", address: "239 MAIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/240753" },
+{ name: "Columbus Park Trattoria", address: "207 MAIN STREET, Unit Columbus Park Trattoria, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/240750" },
+{ name: "PAPPA'S PIZZA", address: "201 Main Street, Stamford, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/240742" },
+{ name: "Burger King #2273", address: "1058 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/240455" },
+{ name: "Lucy's Pizza Parlor", address: "157 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/240333" },
+{ name: "Mr. Stickleys", address: "234 HILLANDALE AVENUE, STAMFORD, CT 06906", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/240205" },
+{ name: "Barvera LLC", address: "148-162 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/240160" },
+{ name: "Daveâ€™s Hot Chicken ", address: "2215 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/240147" },
+{ name: "Tiernans Bar & Restaurant", address: "187 MAIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/240075" },
+{ name: "True North Brew, LLC AKA Lock City Brewing Co.", address: "54 RESEARCH DRIVE, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/240043" },
+{ name: "Mish Mosh Deli", address: "1028 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/239986" },
+{ name: "Bari 167", address: "163 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/239971" },
+{ name: "Flinders Lane", address: "184 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/239966" },
+{ name: "Edy Food Trucking LLC", address: "0 CUMMINGS POINT ROAD, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/239928" },
+{ name: "Barcelona Wine Bar", address: "222 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/239883" },
+{ name: "Bartaco", address: "222 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/239878" },
+{ name: "Tasty Taco", address: "211 MAIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/239870" },
+{ name: "Stamford Pancakes, Inc. DBA IHOP", address: "2410-2490 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/239698" },
+{ name: "Sabor Latin", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/239390" },
+{ name: "Domino's Pizza (A/C Pizza, LLC)", address: "946 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/239231" },
+{ name: "Tasty Taco", address: "211 MAIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/239157" },
+{ name: "Sabor Latin", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/239155" },
+{ name: "Pinot's Palette", address: "2200 ATLANTIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/239131" },
+{ name: "Chabad Lubavitch ", address: "760 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/239094" },
+{ name: "El Chilito Food Truck I", address: "206 RICHMOND HILL AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/238889" },
+{ name: "Summer Street Kitchen", address: "1410 Summer Street, Stamford, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238741" },
+{ name: "Oh My Gosh II (Cove Road Concession Stand)", address: "0 COVE ROAD, Unit pavilion", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238739" },
+{ name: "Dunkin' Donut - Long Ridge Merritt Donuts LLC", address: "1051 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238738" },
+{ name: "Roxbury Swim and Tennis Club", address: "240 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238737" },
+{ name: "Bronx House Pizza", address: "27 RYAN STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238735" },
+{ name: "Sunshine Cuisine", address: "789 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238731" },
+{ name: "Downtown Donuts LLC d/b/a Dunkin'", address: "400 MAIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238592" },
+{ name: "Ark healthcare &Rehabilitation ", address: "494 ELM STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238512" },
+{ name: "DA Ice Cream Truck I", address: "26 HUNDLEY COURT, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/238477" },
+{ name: "SWEET ICE CREAM LLC", address: "85 DIAZ STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/238430" },
+{ name: "Pinot's Palette", address: "2200 ATLANTIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238428" },
+{ name: "Fiddler's Green", address: "280 SHIPPAN AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238425" },
+{ name: "Sunshine Cuisine (Catering)", address: "789 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238288" },
+{ name: "LaRocca's Country Market", address: "105 OLD LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238286" },
+{ name: "600 Washington Starbucks ", address: "600 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238251" },
+{ name: "The Stamford Hotel ", address: "700 EAST MAIN STREET, STAMFORD, CT 06901", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/238200" },
+{ name: "The Stamford Hotel", address: "700 EAST MAIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238192" },
+{ name: "COALHOUSE PIZZERIA LLC", address: "43 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238191" },
+{ name: "Greek Orthodox Church of the Archangels", address: "1527 BEDFORD STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238182" },
+{ name: "Scotty's Fish and Chips", address: "75 SMITH STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238100" },
+{ name: "Co Brew Cafe", address: "49 JOHN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238096" },
+{ name: "Shiki sushi hibachi Japanese restaurant", address: "473 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/238072" },
+{ name: "Scotty's Fish & Chips", address: "75 SMITH STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237976" },
+{ name: "Rye Ridge Deli", address: "1101 HIGH RIDGE ROAD, Unit 1087 Rye Ridge Deli, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237944" },
+{ name: "Five Guys Burgers and Fries", address: "1203 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237933" },
+{ name: "Taqueria Garibaldi ", address: "83 Atlantic Street, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237848" },
+{ name: "Flinders Lane", address: "184 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237790" },
+{ name: "Stamford 174 LLC", address: "465 Summer Street, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237789" },
+{ name: "Mamaâ€™s kitchen Stamford", address: "158 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237787" },
+{ name: "KO Cafe LLC", address: "101 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237761" },
+{ name: "Dartcor Enterprise Inc.", address: "400 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237748" },
+{ name: "Drop and Fry, LLC", address: "91 COLONIAL ROAD, STAMFORD, CT 06906", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/237534" },
+{ name: "Edgehill Senior Living Community", address: "122 PALMERS HILL ROAD, Unit Edgehill Foodservice Operation, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237413" },
+{ name: "Saravana Bhavan Restaurant", address: "1033 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237410" },
+{ name: "Noches De Colombia", address: "84 WEST PARK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237312" },
+{ name: "EL Jalapeno Food Truck LLC", address: "26 EAST AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/237249" },
+{ name: "DA Ice Cream Truck II ", address: "26 HUNDLEY COURT, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/237247" },
+{ name: "New York Bites", address: "296 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237207" },
+{ name: "Target Store T-1544- Target Cafe", address: "21 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237148" },
+{ name: "Metro Center Grill", address: "1 Station Place Metro Center, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237138" },
+{ name: "Dartcor @ 600 Washington Blvd.", address: "600 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237090" },
+{ name: "High Ridge Fish Market", address: "873 High Ridge Road, Stamford, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237079" },
+{ name: "St. Basil's Ukrainian Catholic Seminary", address: "195 Glenbrook Road, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237078" },
+{ name: "Clarks Hill Global", address: "765 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/237076" },
+{ name: "Village Bagel", address: "301 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237074" },
+{ name: "Merengue Restaurant ", address: "113 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237072" },
+{ name: "H & P DONUT LLC DBA Donut Delight", address: "272 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237071" },
+{ name: "Starbucks @ Barnes & Noble", address: "1101 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/237066" },
+{ name: "LA TIA MAMI LLC", address: "925 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/237058" },
+{ name: "Kalo's Cafe LLC", address: "1055 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236881" },
+{ name: "Steak In It", address: "290 Harbor Drive, Stamford, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/236855" },
+{ name: "Taqueria La Frontera ", address: "2540 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236851" },
+{ name: "Subway High Ridge ", address: "11 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236840" },
+{ name: "Target Store T-1544 Starbucks", address: "21 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236837" },
+{ name: "Daveâ€™s Hot Chicken ", address: "2215 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236751" },
+{ name: "Nathan's Famous", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236710" },
+{ name: "Barista Bar", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236604" },
+{ name: "Tower II 7th Floor Market", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/236602" },
+{ name: "Connector II Market", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/236598" },
+{ name: "Charter Communications ", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236587" },
+{ name: "Panera Bread #6273", address: "1008 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236552" },
+{ name: "Kashi Japanese", address: "81 131 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236490" },
+{ name: "Table LLC", address: "299 LONG RIDGE ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236488" },
+{ name: "Wonder", address: "1131 High Ridge Road, Stamford, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236486" },
+{ name: "Taj Indian Mediterranean Mezze and Grill", address: "211 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236485" },
+{ name: "The Granola Bar of Stamford", address: "700 CANAL STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236484" },
+{ name: "Reddi Rooster", address: "1051 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/236424" },
+{ name: "Subway ", address: "1007 High Ridge Road, Stamford, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236362" },
+{ name: "WARSAW DELI", address: "9 PULASKI STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236337" },
+{ name: "Melt Mobile", address: "23 PEPPER RIDGE PLACE, STAMFORD, CT 06905", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/236325" },
+{ name: "John The Baker", address: "30 LONG RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236258" },
+{ name: "Charter Communications - CulinArt Cafe/Craft", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236231" },
+{ name: "Pure Juice Bar", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236231" },
+{ name: "Wedge Inn", address: "885 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236224" },
+{ name: "Giraibaldi Mexican Grill and Pizza", address: "414 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "", url: "https://stamfordct.portal.opengov.com/records/236154" },
+{ name: "Jefe's Tacos N Grill", address: "55 WATERBURY AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/236058" },
+{ name: "Barnes and Noble Cafe", address: "1131 High Ridge Road, Stamford, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236058" },
+{ name: "Green & Tonic Washington Blvd", address: "1011 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236005" },
+{ name: "Sign of the Whale", address: "6 Harbor Point Rd, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/236001" },
+{ name: "Mamas kitchen Stamford", address: "158 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235994" },
+{ name: "Hospital Donuts LLC d/b/a Dunkin'", address: "33 WEST BROAD STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235992" },
+{ name: "J.M Deli &Grocery", address: "734 PACIFIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235960" },
+{ name: "The Wienery", address: "17 BRIDGE STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235959" },
+{ name: "Divina", address: "275 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235950" },
+{ name: "Sorrento Pizza Restaurant", address: "869 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235948" },
+{ name: "High Ridge Donuts LLC d/b/a Dunkin Donuts", address: "869 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235946" },
+{ name: "Chap-A- Nosh", address: "2701 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/235789" },
+{ name: "Tacos Cardona LLC", address: "32 GRENHART ROAD, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/235651" },
+{ name: "AMC Majestic 6", address: "118 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235562" },
+{ name: "406 W Main St Grocery LLC", address: "406 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/235558" },
+{ name: "Flinders Lane", address: "184 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235501" },
+{ name: "Lorca", address: "125 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235499" },
+{ name: "Good Burger Food Truck", address: "33 DASKAM PLACE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/235451" },
+{ name: "Stamford Smokehouse LLC dba Six Thirteen", address: "108 PROSPECT STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235449" },
+{ name: "Granola Bar of Stamford", address: "700 CANAL STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235432" },
+{ name: "Llama Lips", address: "868 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235425" },
+{ name: "Dorena's Coffee Truck", address: "1019 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/235419" },
+{ name: "Nathan's Famous", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235416" },
+{ name: "Smoothie Naturale", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235415" },
+{ name: "Los Luceros Family Grocery ", address: "165 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235362" },
+{ name: "Fratelli Market ", address: "17-19 CEDAR STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235353" },
+{ name: "Taco Bell #39075", address: "751 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235348" },
+{ name: "Colony Grill inc", address: "168 MYRTLE AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235301" },
+{ name: "Chicken Now", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235275" },
+{ name: "Lakeside Diner", address: "1050 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235271" },
+{ name: "Kung Fu Chef King", address: "100 GREYROCK PLACE, Unit Kung Fu Chef King 7th Floor, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235269" },
+{ name: "Rockrimmon Country Club ", address: "2949 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/235259" },
+{ name: "McDonalds 7362", address: "1103 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235209" },
+{ name: "Research Park Deli", address: "100 RESEARCH DRIVE, Unit 4, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235204" },
+{ name: "Fuji Japanese and Chinese Restaurant", address: "120 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235200" },
+{ name: "Fuji Japanese and Chinese Restaurant", address: "120 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235199" },
+{ name: "Little Buddha ", address: "2270 Summer Street, Stamford, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235174" },
+{ name: "Hernandez Cantina ", address: "482 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235084" },
+{ name: "Bubbakoo's Burritos", address: "800-806 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235051" },
+{ name: "Casa Villa Express", address: "182 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235023" },
+{ name: "KFC", address: "285 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/235022" },
+{ name: "New York Bites", address: "296 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234955" },
+{ name: "Exit 9 Bagels", address: "1128 East Main Street, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234918" },
+{ name: "Gourmet Galley", address: "469 Fairfield Ave., Stamford, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234841" },
+{ name: "WWE - Snackdown", address: "707 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234840" },
+{ name: "WWE - Sideplates", address: "677 WASHINGTON BOULEVARD, Unit B3, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234837" },
+{ name: "EL quetzal Bakery", address: "880 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/234757" },
+{ name: "Kung Fu Chef King", address: "100 GREYROCK PLACE, Unit BODEGA, 7th Floor, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234756" },
+{ name: "Atria Stamford", address: "77 THIRD STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234753" },
+{ name: "Nathan's Famous", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234616" },
+{ name: "Remo's Brick Oven Pizza", address: "27 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234615" },
+{ name: "Pine Hill Deli", address: "1091 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234613" },
+{ name: "Hospital Donuts LLC d/b/a Dunkin'", address: "33 WEST BROAD STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234610" },
+{ name: "Bari 167", address: "167-167 GROVE STREET, Unit 46, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234608" },
+{ name: "Outpost Pizza", address: "276 SELLECK STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234573" },
+{ name: "The Lloyd Hotel Stamford LLC", address: "909 WASHINGTON BOULEVARD, Unit UT1, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234502" },
+{ name: "MI TERRUNO", address: "1051 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234453" },
+{ name: "Person to Person ", address: "445 FAIRFIELD AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/234329" },
+{ name: "Person to Person Truck #", address: "445 FAIRFIELD AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/234309" },
+{ name: "Family's Kitchen LLC", address: "1226 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234210" },
+{ name: "Masa Taco Bar", address: "118 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234126" },
+{ name: "ZAZA", address: "122 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234112" },
+{ name: "Flik International (catering)", address: "2200 ATLANTIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234060" },
+{ name: "Flik International Corp", address: "2200 ATLANTIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234059" },
+{ name: "Avellino Family Barbecue", address: "1101 BEDFORD STREET, STAMFORD, CT 06905", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/234058" },
+{ name: "Avellino Family Barbecue (catering)", address: "1101 BEDFORD STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234057" },
+{ name: "First Presbyterian Church of Stamford", address: "1101 BEDFORD STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234054" },
+{ name: "Dunkin Donut", address: "411 West Main Street, Stamford, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/234029" },
+{ name: "Shahs Halal Food", address: "1094 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233996" },
+{ name: "Ocha Thai Cuisine", address: "93 PROSPECT STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233995" },
+{ name: "La Esquinita Bakery & Deli", address: "717 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233988" },
+{ name: "Chickys Grill and Pizza", address: "15 CEDAR HEIGHTS ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233982" },
+{ name: "Asiana Bistro", address: "848 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233978" },
+{ name: "AMC Landmark 8", address: "101 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233975" },
+{ name: "TIGIN Irish Pub", address: "175 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233734" },
+{ name: "Capriccio Cafe", address: "189 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233732" },
+{ name: "Capricco's Cafe", address: "189 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233731" },
+{ name: "SHIRO INC", address: "172 Bedford Street, Stamford, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233728" },
+{ name: "Barvera LLC", address: "148-162 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233716" },
+{ name: "Santos food Truck", address: "43 AVERY STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/233671" },
+{ name: "Union Baptist Church", address: "805 NEWFIELD AVENUE, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233648" },
+{ name: "Reyes Bar and Restaurant", address: "99 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233633" },
+{ name: "Flik International Corp. - Gartner Conference Dining", address: "56 TOP GALLANT ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233626" },
+{ name: "Abilis Courthouse Cafe", address: "123 HOYT STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233613" },
+{ name: "Shah's Downtown ", address: "247 MAIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233539" },
+{ name: "Shah's Downtown ", address: "247 MAIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233535" },
+{ name: "Growing Minds Daycare & Learning Center", address: "1435 BEDFORD STREET, Unit 3R, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233519" },
+{ name: "Sliders Cafe", address: "1 UNIVERSITY PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233469" },
+{ name: "West Ave Donut Shoppe LLC", address: "349 WEST AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233466" },
+{ name: "EMPANADAS ON THE GO", address: "1527 BEDFORD STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233464" },
+{ name: "Steel Sharpens Steel", address: "1527 BEDFORD STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233461" },
+{ name: "Antonio's Restaurant ", address: "405 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233417" },
+{ name: "Westover Pizzeria", address: "234 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233415" },
+{ name: "Bachata Restaurant ", address: "820 East Main Street, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233328" },
+{ name: "Westover Pizzeria II", address: "306 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233328" },
+{ name: "Hudson Social ", address: "128 Bedford Street, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233326" },
+{ name: "Planet Pizza ", address: "920 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233325" },
+{ name: "Daddy's Peruvian Deli ", address: "953 East Main Street, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233321" },
+{ name: "Family's Kitchen LLC", address: "1226 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233317" },
+{ name: "Caseys Tavern LLC", address: "85 WOODSIDE STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233315" },
+{ name: "Bank Street Events ", address: "65 BANK STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233314" },
+{ name: "The village Table", address: "1062 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233193" },
+{ name: "The Village Table", address: "1062 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233192" },
+{ name: "Boys and Girls Club Stamford", address: "347 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233191" },
+{ name: "1234 Pzza", address: "1232 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233086" },
+{ name: "New Hong Kong Chinese Restaurant", address: "596 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233084" },
+{ name: "KBJ Chef's Diner", address: "127 Jefferson Street, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233074" },
+{ name: "Ney York Bites ", address: "269 Bedford Street, Stamford, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/233007" },
+{ name: "Elm Coffee LLC", address: "417 ELM STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232957" },
+{ name: "Cingari Kitchen LLC", address: "471 ELM STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232946" },
+{ name: "Riko's Pizza", address: "886 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232883" },
+{ name: "Subway 13391", address: "946 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232867" },
+{ name: "Cafe Luna", address: "77 WEST BROAD STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232806" },
+{ name: "Bedford Thai", address: "69 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232794" },
+{ name: "Mish Mosh", address: "1028 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232761" },
+{ name: "Carvel", address: "1060 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232753" },
+{ name: "FIve Star Inc (Food Mart Shell Gas Station)", address: "243 WEST AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232725" },
+{ name: "Courthouse Square Donuts ", address: "135 Prospect Street, Stamford, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232716" },
+{ name: "Cinco De Mayo", address: "97-115 FRANKLIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232704" },
+{ name: "Farmhouse at the Crossroads", address: "2635 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232620" },
+{ name: "Sandwich Maestro", address: "101 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232583" },
+{ name: "LChaim of Stamford LLC", address: "59 High Ridge Rd, Stamford, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232581" },
+{ name: "Ark Healthcare & Rehabilitation at St Camilus", address: "494 ELM STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232580" },
+{ name: "Oh my Gosh", address: "888 WASHINGTON BOULEVARD, Unit 4th Floor Cafe Kathi's, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232577" },
+{ name: "Eric's Bagel", address: "1230 NEWFIELD AVENUE, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232565" },
+{ name: "Flik International Corp", address: "1 BLACHLEY ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232537" },
+{ name: "Tacos Cardona LLC", address: "50 FAIRFIELD AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/232535" },
+{ name: "All Star Bar + Grill", address: "1 BLACHLEY ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232457" },
+{ name: "ZSTRICT", address: "1 BLACHLEY ROAD, Unit Suite 102, ZSTRICT, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232456" },
+{ name: "Oh My Gosh LLC", address: "888 WASHINGTON BOULEVARD, Unit 4th Floor Cafe Kathi's, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232436" },
+{ name: "1234 pizza", address: "820 East Main Street, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232414" },
+{ name: "The Boatyard at Smokey Joes", address: "1308 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232411" },
+{ name: "Lucy's Pizza Parlor", address: "157 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232409" },
+{ name: "Taqueria La Frontera", address: "2540 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232381" },
+{ name: "The Italian Deli", address: "77 CRESCENT STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232327" },
+{ name: "El Mercado", address: "761 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232301" },
+{ name: "La Esquinita Deli & Bakery", address: "717 ATLANTIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232275" },
+{ name: "Restaurant Associates, LCC (1st Floor Kitchen)", address: "677 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232171" },
+{ name: "Restaurant Associates, LLC (5th Floor Kitchen)", address: "677 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232169" },
+{ name: "THIRD PLACE BY HALF FULL BREWERY", address: "575 PACIFIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232168" },
+{ name: "New Hong Kong Chinese Restaurant", address: "596 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232167" },
+{ name: "Stamford Gas LLC", address: "224 MAGEE AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232165" },
+{ name: "Fresh & Co", address: "355 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232052" },
+{ name: "Starbucks Coffee", address: "64 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232051" },
+{ name: "Popeye's", address: "448 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/232006" },
+{ name: "Aux Delices Food LLC", address: "23 ACOSTA STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231972" },
+{ name: "Long Ridge Drive Thru LLC d/b/a Dunkin Donuts", address: "22 LONG RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231939" },
+{ name: "CULINART - STARWOOD RESORTS & HOTEL", address: "1 STAR POINT, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231938" },
+{ name: "Mi Ranchito", address: "260 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231937" },
+{ name: "Dairy Queen", address: "885 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231877" },
+{ name: "La Esquinita Deli & Bakery", address: "717 ATLANTIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231845" },
+{ name: "Avon Theatre Film Center", address: "272 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231831" },
+{ name: "Shiki sushi hibachi Japanese restaurant", address: "473 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231439" },
+{ name: "Metro Center Grill", address: "429 WASHINGTON BOULEVARD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231438" },
+{ name: "Lucky Classic", address: "217 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231436" },
+{ name: "K O Caffe ", address: "101 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231418" },
+{ name: "Chilli Peppers", address: "12 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/231378" },
+{ name: "Lucy's Pizza Parlor", address: "157 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231356" },
+{ name: "Lenny's Seafood and Steakhouse", address: "1297 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231297" },
+{ name: "Flik International Corp", address: "900 LONG RIDGE ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231244" },
+{ name: "Kotobuki Restaurant", address: "457-485 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231177" },
+{ name: "Riconcito Chapin", address: "701 PACIFIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231176" },
+{ name: "Metro Center Cafe", address: "429 WASHINGTON BOULEVARD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231175" },
+{ name: "Casa Villa", address: "868 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231174" },
+{ name: "Patisserie Salzburg Stamford", address: "0 HARBOR POINT ROAD SOUTH", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231161" },
+{ name: "Kampei ", address: "49 High Ridge Road, Stamford, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231151" },
+{ name: "Caffe Bon", address: "650 GLENBROOK ROAD, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231096" },
+{ name: "MI Terruno", address: "1051 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/231006" },
+{ name: "Trio Community Meals at CLC", address: "195 HILLANDALE AVENUE, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230883" },
+{ name: "Cassena Care at Stamford ", address: "53 COURTLAND AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230882" },
+{ name: "La Picante", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230881" },
+{ name: "Liz Sue Bakery", address: "63 HIGH ROCK ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230874" },
+{ name: "Canard Cafe", address: "1 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230862" },
+{ name: "The Whale Tea Stamford LLC", address: "1 BANK STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230861" },
+{ name: "Pellicci's Restaurant", address: "96 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230857" },
+{ name: "Aha Ice Cream Roll Inc./Halo Ice Cream", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230849" },
+{ name: "Blue Lion's Event", address: "1 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230847" },
+{ name: "The Learning Center at Piper", address: "17 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230843" },
+{ name: "New Olive Branch", address: "703 SHIPPAN AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230812" },
+{ name: "La Picante", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230808" },
+{ name: "Pink Sweets Cake", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230804" },
+{ name: "Queen of Clergy", address: "274 STRAWBERRY HILL AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230801" },
+{ name: "The Towne Parlor", address: "120 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230799" },
+{ name: "The Old House II", address: "880 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230797" },
+{ name: "Synchrony Sodexo (catering)", address: "777 BLD#A LONG RIDGE ROAD, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230756" },
+{ name: "Synchrony Café", address: "777 LONG RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230751" },
+{ name: "Richard & Bernie Caribbean Cuisine & Mini Market, LLC", address: "501 GLENBROOK ROAD, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230744" },
+{ name: "Corporate Image Dining Services, Inc. dba Cafe 750", address: "750 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230743" },
+{ name: "Tacos Morelos Alejando", address: "7 ROOSEVELT AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/230710" },
+{ name: "Divina", address: "275 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230697" },
+{ name: "So Fresh Doughnut Co.", address: "990 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230674" },
+{ name: "El Quetzal Bakery", address: "212 RICHMOND HILL AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230674" },
+{ name: "Robeks", address: "2215 SUMMER STREET, Unit Valentina's, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230666" },
+{ name: "Reddi Rooster Too LLC", address: "1051 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230664" },
+{ name: "Juarez Coffee Truck LLC", address: "28 VERNON PLACE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/230657" },
+{ name: "La Hacienda Restaurant ", address: "492 GLENBROOK ROAD, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230621" },
+{ name: "Cassena Care at Stamford", address: "53 COURTLAND AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230605" },
+{ name: "Sodexo at 1600 Summer Street", address: "1600 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230593" },
+{ name: "Sorrento Pizza Restaurant", address: "869 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230561" },
+{ name: "Mecha Noodle Bar Stamford", address: "151 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230558" },
+{ name: "Elm street Market ", address: "320 Elm Street, Stamford CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230530" },
+{ name: "Taste of Grill", address: "888 WASHINGTON BOULEVARD, Unit #10, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/230517" },
+{ name: "Flik International Corp -", address: "1 BLACHLEY ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230512" },
+{ name: "RPM Raceway", address: "600 WEST AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230467" },
+{ name: "New York Bites", address: "296 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/230453" },
+{ name: "Five Guys Burger and Fries", address: "1203 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230400" },
+{ name: "Rye Ridge Deli", address: "1101 HIGH RIDGE ROAD, Unit 1087 Rye Ridge Deli, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230394" },
+{ name: "Barvera LLC", address: "148-162 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/230382" },
+{ name: "Lovely Louise", address: "42 CATOONA LANE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/230372" },
+{ name: "LA BENDICION CHICHARRONES Y CARNITAS", address: "401-405 SHIPPAN AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/230142" },
+{ name: "Taj Indian Mediterranean Mezze and Grill", address: "211 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/229729" },
+{ name: "Ideal Brazil", address: "789 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/229597" },
+{ name: "Quartiere", address: "51 BANK STREET, Stamford, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/229591" },
+{ name: "La Picante", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/229527" },
+{ name: "Nine West Cafe", address: "9 WEST BROAD STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/229511" },
+{ name: "KBJ Chef's Diner", address: "127 Jefferson Street, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/229483" },
+{ name: "Sodexo at 1600 Summer Street", address: "1600 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/229472" },
+{ name: "Dunkin", address: "445 WASHINGTON BOULEVARD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/229298" },
+{ name: "China Pavilion", address: "67-69 West Broad Street, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/229283" },
+{ name: "City Market and Coco Cafe", address: "68 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/229270" },
+{ name: "Taj Indian Mediterranean Mezze and Grill", address: "211 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/229228" },
+{ name: "Exit 9 Bagels", address: "1120 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/229128" },
+{ name: "K&S Top of the Hill", address: "116 WEST BROAD STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/229012" },
+{ name: "MAYA Restaurant ", address: "166 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/229001" },
+{ name: "Hugos Restaurant", address: "161 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228960" },
+{ name: "LA Cabana", address: "168 RICHMOND HILL AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228872" },
+{ name: "Harbor Terrace Cafe", address: "208 HARBOR DRIVE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228803" },
+{ name: "Jerkyz", address: "225 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228719" },
+{ name: "La Picante", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228599" },
+{ name: "Prime Stamford ", address: "62 SOUTHFIELD AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228545" },
+{ name: "Crab Shell", address: "46 Southfield Avenue, Unit 3, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228541" },
+{ name: "KBJ Chefs Diner", address: "127 Jefferson Street, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228512" },
+{ name: "Stamford Hospital Cafeteria", address: "1 HOSPITAL PLAZA, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228498" },
+{ name: "Stamford Hospital Catering Services", address: "1 HOSPITAL PLAZA, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228491" },
+{ name: "Stamford Hospital Patient Main Kitchen", address: "1 HOSPITAL PLAZA, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228465" },
+{ name: "Remo's Brick Oven Pizza", address: "27 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228409" },
+{ name: "DCG Food Service", address: "290 Harbor Drive, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228385" },
+{ name: "CHOPT", address: "1101 HIGH RIDGE ROAD, Unit 1109, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228289" },
+{ name: "EL Torito Deli ", address: "1389 HIGH RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228282" },
+{ name: "Brazil", address: "789 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/228229" },
+{ name: "Fusaro Italian Deli & Market ", address: "646 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228222" },
+{ name: "Whole Foods Market", address: "110 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228172" },
+{ name: "Supermarket Donuts LLC", address: "1992 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228140" },
+{ name: "N &P Deli", address: "425 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228132" },
+{ name: "The Loading Dock ", address: "375 FAIRFIELD AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228131" },
+{ name: "Village Bagels", address: "301 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228106" },
+{ name: "Wonder", address: "1101 HIGH RIDGE ROAD, Unit 1057, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228097" },
+{ name: "Stamford Hospital -Tully Cafe", address: "32 STRAWBERRY HILL COURT, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228095" },
+{ name: "Blue Ginger II", address: "1120 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228007" },
+{ name: "Subway", address: "1120 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/228002" },
+{ name: "Zody's 19th Hole", address: "451 STILLWATER ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227990" },
+{ name: "Shoprite @ Commerce", address: "1980 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227946" },
+{ name: "Sebastians Cafe", address: "225 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227862" },
+{ name: "LChaim of Stamford LLC", address: "59 High Ridge Rd, Stamford, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227839" },
+{ name: "King Buffet of Stamford ", address: "2215 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227828" },
+{ name: "Starbucks Coffee #7366", address: "2215 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227817" },
+{ name: "Sunshine Cuisine ", address: "789 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227752" },
+{ name: "DiMare Pastry Shop and Cafe LLC", address: "12 LARGO DRIVE SOUTH, STAMFORD, CT 06907", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/227655" },
+{ name: "Leo's Cafe Inc.", address: "1063 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227651" },
+{ name: "Mish Mosh", address: "1028 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227490" },
+{ name: "Handy Man Donuts LLC d/b/a Dunkin Donuts", address: "310 ELM STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227282" },
+{ name: "McDonalds 7362", address: "1103 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227279" },
+{ name: "Domino's Pizza", address: "946 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227278" },
+{ name: "Lorca", address: "125 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227277" },
+{ name: "DiMare Pastry Ship and Cafe LLC", address: "0 Largo Drive South, Stamford, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227275" },
+{ name: "Flamboyant Chicos Restaurant", address: "61 WILLIAM STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227275" },
+{ name: "Open Rice & Japanese Cuisine", address: "930 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227274" },
+{ name: "Layla Falafel (catering)", address: "930 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227270" },
+{ name: "Layla Falafel", address: "930 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227268" },
+{ name: "MA Maison Childcare", address: "111 WEST NORTH STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227257" },
+{ name: "Mr. Mango's Smoothies, LLC", address: "9 PULASKI STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227252" },
+{ name: "ARK Healthcare & Rehabilitation at ST Camillus", address: "494 ELM STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227250" },
+{ name: "Delight Bakery", address: "390 FAIRFIELD AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227245" },
+{ name: "Reddi Rooster Again LLC", address: "869 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227244" },
+{ name: "Dunkin Donuts", address: "869 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/227241" },
+{ name: "LUIGI'S Restaurant", address: "968 High Ridge Road, Stamford, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227183" },
+{ name: "Purple Star Deli", address: "73 SOUTHFIELD AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/227046" },
+{ name: "The village Table", address: "1062 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/226871" },
+{ name: "L&G Deli", address: "425 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/226782" },
+{ name: "Llama Lips", address: "868 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/226782" },
+{ name: "West Avenue Donut Shoppe LLC", address: "349 WEST AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/226740" },
+{ name: "Person to Person Mobile Food Pantry 2 (MFP2)", address: "445 FAIRFIELD AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/226714" },
+{ name: "Sushi XII", address: "109 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/226489" },
+{ name: "Bedford Street Diner", address: "929 BEDFORD STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/226480" },
+{ name: "Slice of Stamford ", address: "581 Newfield Ave., Stamford, Connecticut 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/226471" },
+{ name: "Merengue Restaurant", address: "113 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/226424" },
+{ name: "Office Donuts LLC", address: "979 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/226401" },
+{ name: "SPEEDY'S PIZZA TRUCK#2", address: "910 East Main Street, Stamford, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/226202" },
+{ name: "BONA BONA ICE CREAM", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/226111" },
+{ name: "Starbucks ", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/226111" },
+{ name: "Pure Juice Bar", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/226108" },
+{ name: "Charter Catering ", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/226102" },
+{ name: "Point 72 Asset Management", address: "72 CUMMINGS POINT ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/226101" },
+{ name: "Cwispy Chkn ", address: "72 MAGEE AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/225965" },
+{ name: "Taj ", address: "211 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/225943" },
+{ name: "Bukovina Deli ", address: "301 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/225939" },
+{ name: "St Leos Fair Sausage Booth", address: "24 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225934" },
+{ name: "St Leos Fair All American Foods", address: "24 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225933" },
+{ name: "St Leos Fair Kitchen", address: "24 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225929" },
+{ name: "St Leos Fair Beverage Station", address: "24 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225927" },
+{ name: "St Leos Fair Clams & Oyster Station", address: "24 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225925" },
+{ name: "St Leos Fair Pasta Station", address: "24 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225920" },
+{ name: "St Leos Fair Gyro Station", address: "24 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225918" },
+{ name: "St Leos Fair Pizza Fritte", address: "24 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225917" },
+{ name: "THE CANOLI TRUCK", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225853" },
+{ name: "BONA BONA ICE CREAM", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225852" },
+{ name: "COLUMBUS PARK TRATTORIA", address: "207 MAIN STREET, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225851" },
+{ name: "D'ABRUZZO", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225849" },
+{ name: "Giovanni Mozzarella", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225847" },
+{ name: "DiMare", address: "12 LARGO DRIVE SOUTH, STAMFORD, CT 06907", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225846" },
+{ name: "Bari 167", address: "163 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225844" },
+{ name: "Divina Modern Italian", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225843" },
+{ name: "Avellino Family Barbecue", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225842" },
+{ name: "Pastaficio", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225841" },
+{ name: "The Blind Rhino", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225840" },
+{ name: "Parachute Concert II", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225839" },
+{ name: "Westover Pizzeria", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225838" },
+{ name: "T's Bar and Pizza Kitchen", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/225837" },
+{ name: "Five Guys Burger and Fries", address: "1203 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/225780" },
+{ name: "Sushi Home LLC", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/225777" },
+{ name: "EL Torito Americano ", address: "1389 HIGH RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/225730" },
+{ name: "Hospital Donuts LLC d/b/a Dunkin Donuts", address: "33 WEST BROAD STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/225683" },
+{ name: "La Benedicion Chicharrones y Carnitas LLC", address: "401-405 SHIPPAN AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/225666" },
+{ name: "La Benedicion Chicharrones y Carnitas LLC", address: "401-405 SHIPPAN AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/225664" },
+{ name: "Edgehill Senior Living Community", address: "122 PALMERS HILL ROAD, Unit Edgehill Foodservice Operation, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/225660" },
+{ name: "El Quetzal Bakery", address: "212 RICHMOND HILL AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/225494" },
+{ name: "All Star Bar & Grill", address: "1 BLACHLEY ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/225355" },
+{ name: "Capers Deli and Catering", address: "2540 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/225280" },
+{ name: "Old House Group Inc", address: "170 SELLECK STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/225279" },
+{ name: "Rockrimmon Country Club ", address: "2949 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/225220" },
+{ name: "GRADE A @ HOPE STREET", address: "473 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/225065" },
+{ name: "Whole Foods Market", address: "110 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/225062" },
+{ name: "The Latin Corner ", address: "116 WEST BROAD STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224999" },
+{ name: "Jersey Mike's SUBS", address: "1203 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224824" },
+{ name: "Hope Street Mini Market", address: "1085 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/224784" },
+{ name: "Hope Street Mini Market", address: "1085 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/224732" },
+{ name: "Cousins Maine Lobster", address: "575 PACIFIC STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/224728" },
+{ name: "Burger King", address: "1058 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224703" },
+{ name: "Fiddlers Green", address: "200 SHIPPAN AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224694" },
+{ name: "Pink Sweets Cakes LLC", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224691" },
+{ name: "Black Pearl Bubble Tea", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224689" },
+{ name: "Daltcor Enterprises, Inc", address: "400 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224680" },
+{ name: "La Perle HPS LLC", address: "15 BANK STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224642" },
+{ name: "La Perle HPS LLC", address: "15 BANK STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224640" },
+{ name: "La Perle HPS LLC", address: "15 BANK STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224636" },
+{ name: "La Perle HPS LLC", address: "15 BANK STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224635" },
+{ name: "La Perle HPS LLC", address: "15 BANK STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224632" },
+{ name: "Blackstones Steakhouse", address: "101 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224563" },
+{ name: "Tabouli Grill", address: "59 High Ridge Rd, Stamford, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224438" },
+{ name: "Modern Love Coffee Roasters", address: "55 High Ridge Road, Stamford, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224433" },
+{ name: "Columbus Park Trottoria", address: "207 MAIN STREET, Unit Columbus Park Trattoria, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224433" },
+{ name: "Cosechas Restaurant", address: "217 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224425" },
+{ name: "Cosechas Restaurant", address: "324 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224422" },
+{ name: "Brighton Gardens of Stamford", address: "59 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224197" },
+{ name: "Shake Shack", address: "64 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224193" },
+{ name: "Grade A Shoprite at Newfield ", address: "565 NEWFIELD AVENUE, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224178" },
+{ name: "Capers Deli & Catering", address: "64 HIGH RIDGE ROAD, Unit 1, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/224139" },
+{ name: "Capers Deli & Catering", address: "2540 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223959" },
+{ name: "Rye Ridge Deli", address: "1101 HIGH RIDGE ROAD, Unit 1087 Rye Ridge Deli, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223956" },
+{ name: "Holy Name Athletic Club", address: "804 ATLANTIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223874" },
+{ name: "La Perle HPS LLC", address: "15 BANK STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223824" },
+{ name: "JM Wright Technical School", address: "120 Bridge Street, Stamford, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223764" },
+{ name: "Patio Cafe Catering ", address: "888 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223657" },
+{ name: "Dunkin Donut", address: "22 LONG RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223628" },
+{ name: "Table 104 LLC", address: "299 LONG RIDGE ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223617" },
+{ name: "St Leo's Fair 2024 Sausage Booth", address: "24 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/223539" },
+{ name: "St Leo's Fair 2024 All American Food", address: "24 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/223538" },
+{ name: "St Leos Fair 2024", address: "24 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/223537" },
+{ name: "Blackstones Steakhouse", address: "101 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223466" },
+{ name: "JUICE KINGS LLC", address: "36 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223464" },
+{ name: "Puerto Vallarta", address: "230 TRESSER BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223402" },
+{ name: "Whole Foods Market", address: "110 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/223279" },
+{ name: "Donut Delight ", address: "1090 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223402" },
+{ name: "Crumbl Cookies", address: "1131 High Ridge Road, Stamford, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223222" },
+{ name: "Lucy's pizza", address: "157 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223089" },
+{ name: "Casa villa", address: "868 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223083" },
+{ name: "The Whale Tea of Stamford", address: "1 BANK STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/223077" },
+{ name: "Pellici Restaurant, Inc", address: "96 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/222992" },
+{ name: "Colony Grill, Inc", address: "168 Myrtle Avenue, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/222734" },
+{ name: "The Taco Project ", address: "1111 High Ridge Rd, Stamford, Connecticut 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/222603" },
+{ name: "Sushi X II", address: "109 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/222256" },
+{ name: "Columbus Park Trattoria Catering", address: "207 MAIN STREET, Unit Columbus Park Trattoria, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/222185" },
+{ name: "First Stamford Place Coffee Shop", address: "151 GREENWICH AVENUE, Unit 100, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/222093" },
+{ name: "First Stamford Cafe, LLC", address: "151 GREENWICH AVENUE, Unit 100, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/222049" },
+{ name: "Omar Restaurant", address: "194 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/222046" },
+{ name: "Saravana Bhavan Restaurant", address: "1033 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/221994" },
+{ name: "Gofer Ice Cream", address: "869 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/221983" },
+{ name: "Panera Bread #6273", address: "1008 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/221972" },
+{ name: "Panera Bread #6273", address: "1008 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/221943" },
+{ name: "Tikal Deli ", address: "226 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/221942" },
+{ name: "Starbucks", address: "288 WEST AVENUE, Unit STARBUCKS, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/221839" },
+{ name: "Woodway Beach Club", address: "95 HOBSON STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/221680" },
+{ name: "Atlantic Street House ", address: "221 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/221580" },
+{ name: "Fortina Harbor Pont LLC D/B/A Fortina", address: "100 WASHINGTON BOULEVARD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/221522" },
+{ name: "Atlantic Street House ", address: "221 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/221265" },
+{ name: "Coalhouse Pizza, LLC", address: "43 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/221142" },
+{ name: "Westside Deli", address: "457 FAIRFIELD AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/221073" },
+{ name: "Waterstone on High Ridge ", address: "215 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/221047" },
+{ name: "SoBol", address: "900 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/220816" },
+{ name: "Dartco Enterprises Inc", address: "400 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/220814" },
+{ name: "Fairfield Pizza", address: "87 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/220789" },
+{ name: "Puerto Vallarta", address: "230 TRESSER BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/220761" },
+{ name: "Subway", address: "417 SHIPPAN AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/220706" },
+{ name: "Half full", address: "575 PACIFIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/220691" },
+{ name: "Daniel's Food Truck", address: "1010 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/220689" },
+{ name: "Tacos Santa Catarina", address: "800-806 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/220686" },
+{ name: "Los Chili Pepper", address: "215 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/220659" },
+{ name: "Third Place by Half Full Brewery", address: "575 PACIFIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/220654" },
+{ name: "Squeens Chilli & Grill", address: "14 ORLANDO AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/220459" },
+{ name: "Saravana Bhavan Restaurant", address: "1033 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/220405" },
+{ name: "Tacos Santa Catarina", address: "800-806 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/220405" },
+{ name: "Don Tonio", address: "0 Washington Boulevard, Stamford, CT", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/220210" },
+{ name: "Dartcor Enterprise Inc", address: "400 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/220094" },
+{ name: "PAPA G's", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/220071" },
+{ name: "Puerto Vallarta", address: "230 TRESSER BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/220070" },
+{ name: "Wedge Inn", address: "885 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/220005" },
+{ name: "Flamboyant Chicos", address: "61 WILLIAM STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/219998" },
+{ name: "Grade A Shoprite @ Commerce", address: "1980 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/219979" },
+{ name: "CVS Pharmacy ", address: "229 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/219968" },
+{ name: "DA ICE CREAM TRUCK", address: "26 HUNDLEY COURT, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/219959" },
+{ name: "Palmer's Market Commissary Kitchen", address: "650 GLENBROOK ROAD, STAMFORD, CT 06906", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/219896" },
+{ name: "Taco Bell ", address: "751 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/219889" },
+{ name: "Stillwater Sandwich Shop", address: "242 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/219736" },
+{ name: "EA Teriyaki ", address: "100 GREYROCK PLACE, Unit EA Teriyaki, 7th Floor, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/219711" },
+{ name: "Tacos Morelos Alejandro", address: "7 ROOSEVELT AVENUE, Unit 2, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/219674" },
+{ name: "PHF Inc.", address: "0-Veterans Park ATLANTIC STREET, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/219541" },
+{ name: "Research Park Deli", address: "100 RESEARCH DRIVE, Unit 4, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/219334" },
+{ name: "Domino's ", address: "1980 WEST MAIN STREET, Unit Dominos Pizza, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/219272" },
+{ name: "DIG", address: "43 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/219257" },
+{ name: "Los Poblanos ", address: "75 TRESSER BOULEVARD, STAMFORD, CT 06901", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/219155" },
+{ name: "Pop up Shop", address: "33 MISSION STREET, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/218983" },
+{ name: "Frank Pepe Pizzarea", address: "64 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/218975" },
+{ name: "Pappas Pizza", address: "201 Main Street, Stamford, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/218799" },
+{ name: "Richard&Bernie Carribean Cuisine and Mini Market, LLC", address: "501 GLENBROOK ROAD, Unit 2, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/218795" },
+{ name: "Buffalo Wild Wings", address: "208 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/218792" },
+{ name: "Mish Mosh", address: "1028 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/218744" },
+{ name: "Synchrony Cafe", address: "777 LONG RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/218743" },
+{ name: "Synchrony Sodexo", address: "777 LONG RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/218724" },
+{ name: "Don Tonio ", address: "925 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/218703" },
+{ name: "Sunny Daes Ice Cream ", address: "633 SHIPPAN AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/218693" },
+{ name: "Benchmark at Stamford", address: "251 TURN OF RIVER ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/218510" },
+{ name: "Riko's Pizza", address: "2010 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/218502" },
+{ name: "California Tortilla ", address: "300 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/218463" },
+{ name: "Los Poblanos", address: "75 TRESSER BOULEVARD, STAMFORD, CT 06901", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/218405" },
+{ name: "La Cathedral De Los Tacos ", address: "152 MAPLE AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/217980" },
+{ name: "Shahs Halal Food", address: "0 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217967" },
+{ name: "Cottontails Childcare and Learning Center ", address: "9 RIVERBEND DR S, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217961" },
+{ name: "Curbside at Cove", address: "1125 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217699" },
+{ name: "Open Rice ", address: "930 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217695" },
+{ name: "COCO Cafe", address: "68 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217646" },
+{ name: "Shah's Downtown ", address: "247 MAIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217630" },
+{ name: "Chipotle Mexican Grill ", address: "1203 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217447" },
+{ name: "Chilli Peppers Truck", address: "80 LOCKWOOD AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/217442" },
+{ name: "EZ Steps Learning Center", address: "877 LONG RIDGE ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217390" },
+{ name: "Handyman Donuts LLC", address: "310 ELM STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217385" },
+{ name: "La Tia Mami LLC", address: "925 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/217360" },
+{ name: "The Learning Experience", address: "421 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217307" },
+{ name: "Panera Bread", address: "1008 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217107" },
+{ name: "Village Bagle", address: "301 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217075" },
+{ name: "Bukovina Deli", address: "301 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217069" },
+{ name: "Panda Restaurant ", address: "1019 Hope Street, Stamford, Connecticut 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217065" },
+{ name: "Amore Cucina & Bar", address: "921 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/217064" },
+{ name: "Carvel", address: "1060 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/216896" },
+{ name: "Barnes & Nobles Bookstore, INC", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/216884" },
+{ name: "Freshco", address: "22 BELLTOWN ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/216803" },
+{ name: "Mundo's Food Truck ", address: "537 CANAL STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/216785" },
+{ name: "400 Lobby Cafe", address: "400 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/216773" },
+{ name: "El Quetzal Bakery", address: "212 RICHMOND HILL AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/216709" },
+{ name: "Boys and Girls Club", address: "347 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/216700" },
+{ name: "Riconcito Chapin", address: "705 PACIFIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/216695" },
+{ name: "R&B Salchitruck", address: "37 HIGHVIEW AVENUE, STAMFORD, CT 06907", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/216641" },
+{ name: "RIO ICECREAM", address: "205 GREENWICH AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/216560" },
+{ name: "R&B Salchitruck", address: "37 HIGHVIEW AVENUE, STAMFORD, CT 06907", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/216535" },
+{ name: "Antojitos Latinos Food Truck II", address: "69 GREENWICH AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/216359" },
+{ name: "The Llyod Hotel Stamford", address: "909 WASHINGTON BOULEVARD, Unit MAIN, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/216270" },
+{ name: "DA ICE CREAM TRUCK", address: "26 HUNDLEY COURT, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/216268" },
+{ name: "Main Catering ", address: "1 HOSPITAL PLAZA, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/216095" },
+{ name: "Main Cafeteria ", address: "1 HOSPITAL PLAZA, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/216087" },
+{ name: "El Chilito Food Truck I", address: "206 RICHMOND HILL AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/215965" },
+{ name: "400 Atlantic Lobby Cafe", address: "400 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/215959" },
+{ name: "Rockrimmon Country Club", address: "2949 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215847" },
+{ name: "Richmond Hill Mini Market ", address: "101 RICHMOND HILL AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215839" },
+{ name: "EL Chilito Food Truck 1", address: "206 RICHMOND HILL AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/215824" },
+{ name: "Mr. Mango's Smoothies, LLC", address: "9 PULASKI STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215803" },
+{ name: "Lindley Food Service", address: "195 HILLANDALE AVENUE, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215801" },
+{ name: "Saravana Bhavan Restaurant", address: "1033 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215799" },
+{ name: "Starbucks", address: "64 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215796" },
+{ name: "Chicken Now ", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215778" },
+{ name: "The Italian Center - Catering", address: "1620 NEWFIELD AVENUE, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215662" },
+{ name: "El Jalapeno Food Truck LLC", address: "43 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/215631" },
+{ name: "Melt Mobile", address: "23 PEPPER RIDGE PLACE, STAMFORD, CT 06905", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/215627" },
+{ name: "Union Baptist Church", address: "805 NEWFIELD AVENUE, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215581" },
+{ name: "El Chilito Food Truck II", address: "10 FINNEY LANE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/215459" },
+{ name: "Annunciation Greek Church ", address: "1230 NEWFIELD AVENUE, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215393" },
+{ name: "Tutti Pazzi ", address: "269 Bedford Street, Stamford, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215378" },
+{ name: "Tan Indian Mediterranean ", address: "211 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215377" },
+{ name: "Pop-up Shop ", address: "33 MISSION STREET, STAMFORD, CT 06902", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/215316" },
+{ name: "Deli Salvadoreno ", address: "72 MYRTLE AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215261" },
+{ name: "Avellino Barbecue", address: "1101 BEDFORD STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215214" },
+{ name: "First Presbyterian Church of Stamford", address: "1101 BEDFORD STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215212" },
+{ name: "Avellino Family Barbeque", address: "1101 BEDFORD STREET, STAMFORD, CT 06905", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/215205" },
+{ name: "Westover Pizzeria II", address: "306 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215200" },
+{ name: "Teff Restaurant ", address: "84 WEST PARK PLACE, STAMFORD, CT 06901", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/215136" },
+{ name: "AMSTERDAM HOTEL [Kitchen]", address: "19 CLARKS HILL AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215123" },
+{ name: "1st Floor Kitchen", address: "677 WASHINGTON BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/215002" },
+{ name: "WWE Side Plate", address: "677 WASHINGTON BOULEVARD, Unit B3, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/214989" },
+{ name: "5Th Floor Kitchen ", address: "677 WASHINGTON BOULEVARD, Unit B1, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/214971" },
+{ name: "Speedy Truck II", address: "902 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/214691" },
+{ name: "Speedy Food Truck III", address: "902 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/214686" },
+{ name: "Little Buddha", address: "2270 Summer Street, Stamford, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/214659" },
+{ name: "John's Pizza ", address: "162 Grove, Stamford, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/214597" },
+{ name: "Chickys Grill and Pizza ", address: "19 Cedar Heights Road, Stamford, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/214506" },
+{ name: "Tacos Don Poncho LL", address: "33 GRENHART ROAD, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/214466" },
+{ name: "Dunkin Donuts", address: "411 West Main Street, Stamford, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/214432" },
+{ name: "MA Maison Childcare ", address: "111 WEST NORTH STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/214354" },
+{ name: "Noches De Columbia ", address: "84 WEST PARK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/214198" },
+{ name: "Great Wall", address: "217 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/214091" },
+{ name: "Rinaldi's Deli Grill", address: "868 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/213934" },
+{ name: "Kona Ice of Stamford", address: "33 CLOVER HILL DRIVE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/213921" },
+{ name: "The Italian Deli", address: "77 CRESCENT STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/213801" },
+{ name: "Office Donuts ", address: "979 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/213659" },
+{ name: "The Learning Center at Piper", address: "17 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/213607" },
+{ name: "Freshco ", address: "22 BELLTOWN ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/213585" },
+{ name: "Asiana Bistro ", address: "848 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/213470" },
+{ name: "Nothing Bundt Cake", address: "848 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/213453" },
+{ name: "ARK/St. Camillus", address: "494 ELM STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/213375" },
+{ name: "Stamford Courthouse Cafe", address: "123 HOYT STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/213364" },
+{ name: "Stillwater Sandwich Shop", address: "242 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/213284" },
+{ name: "Merengue Restaurant ", address: "113 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/213272" },
+{ name: "Baby Cottage Two ", address: "1114 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/213270" },
+{ name: "Juarez coffee truck LLc", address: "28 VERNON PLACE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/213233" },
+{ name: "Donut Delight", address: "1090 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/213203" },
+{ name: "West MainSubway", address: "1980 WEST MAIN STREET, Unit Shoprite Commerce, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/213198" },
+{ name: "ANITAS ECUATORIAN FOOD LLC", address: "87 SAINT CHARLES AVENUE, STAMFORD, CT 06907", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/213169" },
+{ name: "LA FONDITA DE JAYLI", address: "833 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/213064" },
+{ name: "Springdale Diner ", address: "901 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/212818" },
+{ name: "Wells Donuts ", address: "364 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/212676" },
+{ name: "Helen's Luncheonette", address: "316 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/212649" },
+{ name: "Cosechas  Restaurant", address: "324 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/212605" },
+{ name: "Stamford Hotel Catering ", address: "700 EAST MAIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/212522" },
+{ name: "Subways 49769", address: "1120 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/212397" },
+{ name: "City Market ", address: "68 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/212139" },
+{ name: "City Market and Coco Cafe", address: "68 BROAD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/212138" },
+{ name: "Canard Cafe Bar", address: "1 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/212130" },
+{ name: "The Americano ", address: "261 MAIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/211871" },
+{ name: "Sin Fronteras Food Truck", address: "129 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/211454" },
+{ name: "Lunch Lady Gerri's ", address: "337 WOODBINE ROAD, STAMFORD, CT 06903", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/211451" },
+{ name: "The Fourth Quarter", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/211266" },
+{ name: "Edgehill Lifecare Stamford", address: "122 PALMERS HILL ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/211245" },
+{ name: "Mama Sandra's PUPUSERIA LLC", address: "300 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/211243" },
+{ name: "Antonio's Restaurant  ", address: "405 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/211213" },
+{ name: "Rye Ridge Deli ", address: "1101 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/211144" },
+{ name: "Minos Coffee LLC ", address: "107 WEST AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/211107" },
+{ name: "Home Depot", address: "1925 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/210991" },
+{ name: "Aha Ice Cream Roll Inc./Halo Ice Cream", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/210970" },
+{ name: "Julian's NY Hotdogs", address: "325 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/210842" },
+{ name: "4th Quarter", address: "230 TRESSER BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/210062" },
+{ name: "Ginger's Seoul", address: "917 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/209912" },
+{ name: "4th Quarter", address: "230 TRESSER BOULEVARD, STAMFORD, CT 06901", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/209090" },
+{ name: "CINCO DE MAYO", address: "97 FRANKLIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/209035" },
+{ name: "Bedford Street Diner", address: "929 BEDFORD STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/209018" },
+{ name: "Crumbl Cookies", address: "1101 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/208833" },
+{ name: "Fiddler's Green ", address: "280 SHIPPAN AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/208739" },
+{ name: "Mama's Kitchen Stamford", address: "158 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/208486" },
+{ name: "Kumo Hibachi ", address: "850 EAST MAIN STREET, Unit UT217, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/208426" },
+{ name: "Kiku Sushi ", address: "1068 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/208340" },
+{ name: "Springdale Pizza ", address: "1087 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/208328" },
+{ name: "Garden of Eat'n", address: "300 MAIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207999" },
+{ name: "Crumbl Cookies", address: "1101 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207939" },
+{ name: "Point Cafe", address: "2200 ATLANTIC STREET, Unit Point Cafe, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207938" },
+{ name: "Harbor Point Cafe/Catering", address: "2200 ATLANTIC STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207936" },
+{ name: "Starbucks", address: "2215 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207575" },
+{ name: "The  Stamford Diner", address: "135 HARVARD AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207518" },
+{ name: "EL  TORITO", address: "1389 HIGH RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207479" },
+{ name: "McDonald's (2951)", address: "15 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207409" },
+{ name: "MAYA Restaurant", address: "166 STILLWATER AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207408" },
+{ name: "Patio Kafe", address: "888 WASHINGTON BOULEVARD, Unit 4th Floor Cafe Kathi's, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207374" },
+{ name: "LLAMA  LIPS", address: "868 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207288" },
+{ name: "Cove Pizza 1 LLC", address: "864 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207245" },
+{ name: "Stamford Hospital Main Kitchen", address: "1 HOSPITAL PLAZA, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207165" },
+{ name: "Elm Street Diner", address: "463 ELM STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207142" },
+{ name: "Terra Gaucha", address: "230 TRESSER BOULEVARD, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207096" },
+{ name: "K &S Top of The  Hill", address: "116 WEST BROAD STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/207084" },
+{ name: "The Ridiges", address: "970 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/206882" },
+{ name: "The Americano", address: "261 MAIN STREET, STAMFORD, CT 06901", establishmentType: "Retail Food Store ", url: "https://stamfordct.portal.opengov.com/records/206808" },
+{ name: "Patisserie Salzburg of Stamford ", address: "0 HARBOR POINT ROAD SOUTH", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/206582" },
+{ name: "Los Luceros Family Deli ", address: "165 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/206366" },
+{ name: "1234 Pizza", address: "1232 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/206201" },
+{ name: "DITILIA PiZZERIA", address: "2215 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/206186" },
+{ name: "BARI 167", address: "163 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/206152" },
+{ name: "La Ventanita Food Truck", address: "50 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/206147" },
+{ name: "Stamford Diner", address: "135 HARVARD AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/206130" },
+{ name: "Michael's Pizzeria Restaurant", address: "118 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/205927" },
+{ name: "Chicken Now", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/205909" },
+{ name: "Kai Manam LLC", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/205831" },
+{ name: "Turning Point Coffee & Wine Bar", address: "1 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/205776" },
+{ name: "EL TORITO Deli", address: "1389 HIGH RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/205415" },
+{ name: "TABOULI GRILL", address: "43 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/205403" },
+{ name: "La Ventanita Food Truck", address: "50 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/205268" },
+{ name: "Remoâ€™s Brick Oven ", address: "27 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/205254" },
+{ name: "Stamford Social Club", address: "863 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/205244" },
+{ name: "Omar Restaurant", address: "194 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/205127" },
+{ name: "Maruici", address: "1980 WEST MAIN STREET, Unit Shoprite Commerce, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/205034" },
+{ name: "SHAH'S HALAL FOOD", address: "0 HOPE STREET, Unit 125, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/204959" },
+{ name: "Taco Bell", address: "751 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/204605" },
+{ name: "Bubbakoos Burritos", address: "800 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/204599" },
+{ name: "LA  CABANA", address: "", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/204378" },
+{ name: "Farm House", address: "2635 LONG RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/204172" },
+{ name: "Supermarket Donuts", address: "1992 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/204158" },
+{ name: "Kitchen Donuts ", address: "409 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/204149" },
+{ name: "MI Terruno", address: "1051 EAST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/203644" },
+{ name: "La Hacienda Restaurant ", address: "492 GLENBROOK ROAD, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/203535" },
+{ name: "Prime Restaurant ", address: "62 SOUTHFIELD AVENUE, Unit UNIT 2, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/203461" },
+{ name: "Flour Water Salt Bread", address: "17 DAVENPORT STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/203448" },
+{ name: "RIKOâ€™S", address: "886 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/203328" },
+{ name: "Amore Cucina", address: "921 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/203313" },
+{ name: "Water-Stone on High Ridge", address: "215 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/203283" },
+{ name: "ARK Healthcare St. Camillus", address: "494 ELM STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/203206" },
+{ name: "Avellino Family Barbecue", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/202327" },
+{ name: "The Blind Rhino", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/202309" },
+{ name: "Lunch Lady Gerriâ€™s", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/202307" },
+{ name: "Pieology", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/202305" },
+{ name: "Taste of grill ", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/202290" },
+{ name: "Goniâ€™s Gourmet Lobster Truck ", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/202282" },
+{ name: "Rollin Rooster", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/202279" },
+{ name: "Daniels food truck", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/202193" },
+{ name: "Zodyâ€™s 19 Hole", address: "451 STILLWATER AVENUE, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/201979" },
+{ name: "Burger King", address: "1058 HIGH RIDGE ROAD, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/201555" },
+{ name: "Antojitos Latinos", address: "779 ATLANTIC STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/201530" },
+{ name: "Sin Fronteras", address: "129 ATLANTIC STREET, STAMFORD, CT 06901", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/201529" },
+{ name: "Papa G's LLC", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/201527" },
+{ name: "Royal Guard Fish & Chips", address: "323 SHIPPAN AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/201481" },
+{ name: "JBJ Chefs Diner", address: "127 Jefferson Street, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/201463" },
+{ name: "Purple Star Deli", address: "73 SOUTHFIELD AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/201378" },
+{ name: "Cove Beach Grill", address: "820 COVE ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/201362" },
+{ name: "Metro Center Cafe", address: "429 WASHINGTON BOULEVARD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/201204" },
+{ name: "Crabshell ", address: "46 Southfield Avenue, Unit 3, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/201043" },
+{ name: "Giovana's Gourmet  Deli", address: "1492 HIGH RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/201032" },
+{ name: "Blackstones Steakhouse", address: "101 BROAD STREET, Unit 4 Landmark Square, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/200636" },
+{ name: "Nutrition Blendz ", address: "101 BROAD STREET, Unit 4 Landmark Square, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/200625" },
+{ name: "Papa G's Pizza", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/200610" },
+{ name: "Subway", address: "1980 WEST MAIN STREET, Unit Shoprite Commerce, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/200573" },
+{ name: "The Learning Center at Piper's Hill Monsalve", address: "17 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/200213" },
+{ name: "MI Ranchito", address: "260 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/200187" },
+{ name: "Fish Restaurant", address: "245 BEDFORD STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/200117" },
+{ name: "Humbled Coffee House", address: "575 HOPE STREET, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/199501" },
+{ name: "DIVINA", address: "275 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/199126" },
+{ name: "Samâ€™s American Bistro", address: "243 TRESSER BOULEVARD, Unit HD Hotels, LLC, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/198926" },
+{ name: "Maruichi Select Stamford", address: "191 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/198831" },
+{ name: "Kashi Japanese", address: "81 SUMMER STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/198821" },
+{ name: "Cinco De Mayo", address: "97 FRANKLIN STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/198761" },
+{ name: "Cottontail Child Care", address: "9 RIVERBEND DRIVE SOUTH, STAMFORD, CT 06907", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/198281" },
+{ name: "Armon Hotel", address: "2701 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/198199" },
+{ name: "Stamford Pancakes, Inc. DBA IHOP", address: "2410 SUMMER STREET, STAMFORD, CT 06905", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/197840" },
+{ name: "Six Thirteen", address: "108 PROSPECT STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/197737" },
+{ name: "Oneill Concessions Ice Cream", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/197644" },
+{ name: "The Blind Rhino Bar", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/197641" },
+{ name: "Oneill Concessions Mobile LLC. ", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Temporary Food Event ", url: "https://stamfordct.portal.opengov.com/records/197635" },
+{ name: "The Blind Rhino", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/197624" },
+{ name: "Betzy's Latin Flavor ", address: "1040 WASHINGTON BOULEVARD, Stamford, CT 06901", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/197609" },
+{ name: "La Picante Fine Foods ", address: "100 GREYROCK PLACE, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/197463" },
+{ name: "Minos coffee LLC ", address: "107 WEST AVENUE, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/197389" },
+{ name: "CAROLINA'S FOOD TRUCK", address: "133 CULLODEN ROAD, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/197352" },
+{ name: "Omar Restaurant", address: "194 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/197230" },
+{ name: "CWISPY CHKN", address: "72 MAGEE AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/197191" },
+{ name: "Kentucky Fried Chicken", address: "285 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/197065" },
+{ name: "El  TORITO", address: "1389 HIGH RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/196966" },
+{ name: "DA ICE CREAM TRUCK", address: "26 HUNDLEY COURT, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/196744" },
+{ name: "FINGER LICK'N LIMENO", address: "50 WARDWELL STREET, STAMFORD, CT 06902", establishmentType: "Mobile Food ", url: "https://stamfordct.portal.opengov.com/records/196670" },
+{ name: "Antojitos Deli", address: "194 WEST MAIN STREET, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/196666" },
+{ name: "Charter Communications Catering ", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/196565" },
+{ name: "Tower I 7th Floor Market ", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/196558" },
+{ name: "Charter Market Tower II", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/196537" },
+{ name: "Connector Market 2nd Floor", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/196537" },
+{ name: "Pure Juice Bar", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/196532" },
+{ name: "Barista Bar", address: "400 WASHINGTON BOULEVARD, STAMFORD, CT 06904", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/196514" },
+{ name: "OCHA THAI &JAPANESE", address: "93 PROSPECT STREET, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/196408" },
+{ name: "Brighton Garden", address: "59 ROXBURY ROAD, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/196377" },
+{ name: "Shiki Hibachi and Sushi ", address: "473 HOPE STREET, STAMFORD, CT 06906", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/196128" },
+{ name: "The Stamford Diner", address: "135 HARVARD AVENUE, STAMFORD, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/195995" },
+{ name: "Patio Cafe", address: "888 WASHINGTON BOULEVARD, Unit 4th Floor Cafe Kathi's, STAMFORD, CT 06901", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/195890" },
+{ name: "Floridalma Calel", address: "1389 HIGH RIDGE ROAD, STAMFORD, CT 06903", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/195658" },
+{ name: "DCG Food Service", address: "290 Harbor Drive, Stamford, CT 06902", establishmentType: "Food Service ", url: "https://stamfordct.portal.opengov.com/records/194696" }
+
+
+//DO NOT TOUCH BELOW
+
+  ];
+
+
+// DO NOT TOUCH ANYTHING BEYOND HERE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        let activeLetter = 'all';
+
+        function createDataRow(business) {
+            const dataRow = document.createElement('div');
+            dataRow.className = 'data-row-container';
+            dataRow.innerHTML = `
+                <div class="data-row-item"><a href="${business.url}">${business.name}</a></div>
+                <div class="data-row-vertical-divider"></div>
+                <div class="data-row-item align-right">${business.address}</div>
+            `;
+            return dataRow;
+        }
+
+
+        function displayBusinesses(businessesToDisplay) {
+            const dataDisplayArea = document.getElementById('data-display-area');
+            dataDisplayArea.innerHTML = ''; // Clear previous results
+            if (businessesToDisplay.length === 0) {
+                const noResultsMessage = document.createElement('div');
+                noResultsMessage.className = 'data-row-container';
+                noResultsMessage.style.justifyContent = 'center';
+                noResultsMessage.style.padding = '1rem';
+                noResultsMessage.style.fontSize = '1.125rem';
+                noResultsMessage.style.color = '#555';
+                noResultsMessage.innerText = 'No businesses found matching your criteria.';
+                dataDisplayArea.appendChild(noResultsMessage);
+            } else {
+                businessesToDisplay.forEach(business => {
+                    const dataRow = createDataRow(business);
+                    dataDisplayArea.appendChild(dataRow);
+                });
+            }
+        }
+
+
+        function performSearch() {
+            const businessNameTerm = businessNameInput.value.toLowerCase();
+            const selectedEstablishmentType = establishmentTypeSelect.value;
+
+
+            const filteredBusinesses = allBusinesses.filter(business => {
+                const matchesName = business.name.toLowerCase().includes(businessNameTerm);
+                const matchesEstablishmentType = selectedEstablishmentType === 'all' || business.establishmentType.toLowerCase().includes(selectedEstablishmentType.toLowerCase());
+                const matchesLetter = activeLetter === 'all' || business.name.toLowerCase().startsWith(activeLetter.toLowerCase());
+                return matchesName && matchesEstablishmentType && matchesLetter;
+            });
+            displayBusinesses(filteredBusinesses);
+        }
+
+        function createAlphabetFilter() {
+            const container = document.getElementById('alphabet-filter-container');
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+            const allButton = document.createElement('button');
+            allButton.textContent = 'All';
+            allButton.className = 'alphabet-filter-button active';
+            allButton.setAttribute('data-letter', 'all');
+            container.appendChild(allButton);
+            alphabet.forEach(letter => {
+                const button = document.createElement('button');
+                button.textContent = letter;
+                button.className = 'alphabet-filter-button';
+                button.setAttribute('data-letter', letter);
+                container.appendChild(button);
+            });
+
+            container.addEventListener('click', (event) => {
+                if (event.target.classList.contains('alphabet-filter-button')) {
+                    document.querySelectorAll('.alphabet-filter-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    event.target.classList.add('active');
+                    activeLetter = event.target.getAttribute('data-letter');
+                    performSearch();
+                }
+            });
+        }
+
+
+        createAlphabetFilter();
+        displayBusinesses(allBusinesses);
+
+        const businessNameInput = document.getElementById('business-name');
+        const establishmentTypeSelect = document.getElementById('establishment-type');
+        const searchButton = document.getElementById('search');
+
+        searchButton.addEventListener('click', performSearch);
+        businessNameInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+        establishmentTypeSelect.addEventListener('change', performSearch);
+    });
+</script>
