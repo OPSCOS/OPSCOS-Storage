@@ -1,0 +1,303 @@
+<style>
+    :root {
+    --primary-color: #2c3e50;
+    --accent-color: #27ae60;
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --border-color: #e0e0e0;
+    --warning-color: #e67e22;
+    --danger-color: #c0392b;
+    }
+    body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-main);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 20px;
+    }
+    .main-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    }
+    .page-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .page-header h1 {
+    margin: 0;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    }
+    .page-header p {
+    margin: 10px 0 0;
+    opacity: 0.9;
+    font-weight: 300;
+    }
+    .holiday-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    }
+    .holiday-entry-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-top: 5px solid var(--accent-color);
+    transition: transform 0.2s;
+    }
+    .holiday-entry-card:hover {
+    transform: translateY(-5px);
+    }
+    /* Specific styling for cards with schedule changes */
+    .holiday-entry-card.status-delayed-collection {
+    border-top-color: var(--warning-color);
+    }
+    .holiday-date-text {
+    font-weight: bold;
+    color: var(--primary-color);
+    display: block;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    }
+    .holiday-title {
+    font-size: 1.25rem;
+    margin: 5px 0 15px 0;
+    color: #1a1a1a;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    }
+    .service-detail-row {
+    margin-bottom: 10px;
+    }
+    .service-type-label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: block;
+    color: var(--text-muted);
+    }
+    .service-status-message {
+    font-size: 0.95rem;
+    }
+    /* Status-specific color classes */
+    .msg-on-schedule {
+    color: var(--accent-color);
+    font-weight: bold;
+    }
+    .msg-closed {
+    color: var(--danger-color);
+    font-weight: bold;
+    }
+    .msg-delayed {
+    color: var(--warning-color);
+    font-weight: bold;
+    }
+    @media (max-width: 600px) {
+    body {
+    padding: 10px;
+    }
+    .page-header h1 {
+    font-size: 1.5rem;
+    }
+    }
+</style>
+<div class="main-container">
+<header class="page-header">
+<h1>2025 Holiday Schedule</h1>
+<p>Stamford Recycling &amp; Sanitation</p>
+</header>
+<div class="holiday-list-grid">
+<!-- January -->
+<div class="holiday-entry-card">
+<span class="holiday-date-text">January 20</span>
+<h2 class="holiday-title">Martin Luther King Day</h2>
+<div class="service-detail-row">
+<span class="service-type-label">Garbage &amp; Recycling</span>
+<span class="service-status-message msg-on-schedule">Collected on Schedule</span>
+</div>
+<div class="service-detail-row">
+<span class="service-type-label">Transfer Station</span>
+<span class="service-status-message msg-closed">Closed</span>
+</div>
+</div>
+<!-- February -->
+<div class="holiday-entry-card">
+<span class="holiday-date-text">February 17</span>
+<h2 class="holiday-title">Presidents Day</h2>
+<div class="service-detail-row">
+<span class="service-type-label">Garbage &amp; Recycling</span>
+<span class="service-status-message msg-on-schedule">Collected on Schedule</span>
+</div>
+<div class="service-detail-row">
+<span class="service-type-label">Transfer Station</span>
+<span class="service-status-message msg-closed">Closed</span>
+</div>
+</div>
+<!-- April -->
+<div class="holiday-entry-card">
+<span class="holiday-date-text">April 18</span>
+<h2 class="holiday-title">Good Friday</h2>
+<div class="service-detail-row">
+<span class="service-type-label">Garbage &amp; Recycling</span>
+<span class="service-status-message msg-on-schedule">Collected on Schedule</span>
+</div>
+<div class="service-detail-row">
+<span class="service-type-label">Transfer Station</span>
+<span class="service-status-message msg-closed">Closed</span>
+</div>
+</div>
+<!-- May -->
+<div class="holiday-entry-card">
+<span class="holiday-date-text">May 26</span>
+<h2 class="holiday-title">Memorial Day</h2>
+<div class="service-detail-row">
+<span class="service-type-label">Garbage &amp; Recycling</span>
+<span class="service-status-message msg-on-schedule">Collected on Schedule</span>
+</div>
+<div class="service-detail-row">
+<span class="service-type-label">Transfer Station</span>
+<span class="service-status-message msg-closed">Closed</span>
+</div>
+</div>
+<!-- June -->
+<div class="holiday-entry-card">
+<span class="holiday-date-text">June 19</span>
+<h2 class="holiday-title">Juneteenth</h2>
+<div class="service-detail-row">
+<span class="service-type-label">Garbage &amp; Recycling</span>
+<span class="service-status-message msg-on-schedule">Collected on Schedule</span>
+</div>
+<div class="service-detail-row">
+<span class="service-type-label">Transfer Station</span>
+<span class="service-status-message msg-closed">Closed</span>
+</div>
+</div>
+<!-- July -->
+<div class="holiday-entry-card">
+<span class="holiday-date-text">July 4</span>
+<h2 class="holiday-title">Independence Day</h2>
+<div class="service-detail-row">
+<span class="service-type-label">Garbage &amp; Recycling</span>
+<span class="service-status-message msg-on-schedule">Collected on Schedule</span>
+</div>
+<div class="service-detail-row">
+<span class="service-type-label">Transfer Station</span>
+<span class="service-status-message msg-closed">Closed</span>
+</div>
+</div>
+<!-- September -->
+<div class="holiday-entry-card">
+<span class="holiday-date-text">September 1</span>
+<h2 class="holiday-title">Labor Day</h2>
+<div class="service-detail-row">
+<span class="service-type-label">Garbage &amp; Recycling</span>
+<span class="service-status-message msg-on-schedule">Collected on Schedule</span>
+</div>
+<div class="service-detail-row">
+<span class="service-type-label">Transfer Station</span>
+<span class="service-status-message msg-closed">Closed</span>
+</div>
+</div>
+<!-- October -->
+<div class="holiday-entry-card">
+<span class="holiday-date-text">October 13</span>
+<h2 class="holiday-title">Columbus Day</h2>
+<div class="service-detail-row">
+<span class="service-type-label">Garbage &amp; Recycling</span>
+<span class="service-status-message msg-on-schedule">Collected on Schedule</span>
+</div>
+<div class="service-detail-row">
+<span class="service-type-label">Transfer Station</span>
+<span class="service-status-message msg-closed">Closed</span>
+</div>
+</div>
+<!-- November 11 -->
+<div class="holiday-entry-card">
+<span class="holiday-date-text">November 11</span>
+<h2 class="holiday-title">Veterans Day</h2>
+<div class="service-detail-row">
+<span class="service-type-label">Garbage &amp; Recycling</span>
+<span class="service-status-message msg-on-schedule">Collected on Schedule</span>
+</div>
+<div class="service-detail-row">
+<span class="service-type-label">Transfer Station</span>
+<span class="service-status-message msg-closed">Closed</span>
+</div>
+</div>
+<!-- Thanksgiving -->
+<div class="holiday-entry-card status-delayed-collection">
+<span class="holiday-date-text">November 27 - 28</span>
+<h2 class="holiday-title">Thanksgiving</h2>
+<div class="service-detail-row">
+<span class="service-type-label">Garbage &amp; Recycling</span>
+<span class="service-status-message msg-delayed">Delayed 1 Day (Thu/Fri)</span>
+</div>
+<div class="service-detail-row">
+<span class="service-type-label">Transfer Station</span>
+<span class="service-status-message msg-closed">Closed</span>
+</div>
+</div>
+<!-- Christmas Eve -->
+<div class="holiday-entry-card">
+<span class="holiday-date-text">December 24</span>
+<h2 class="holiday-title">Christmas Eve</h2>
+<div class="service-detail-row">
+<span class="service-type-label">Garbage &amp; Recycling</span>
+<span class="service-status-message msg-on-schedule">Collected on Schedule</span>
+</div>
+<div class="service-detail-row">
+<span class="service-type-label">Transfer Station</span>
+<span class="service-status-message msg-delayed">Closes early (11:00 AM)</span>
+</div>
+</div>
+<!-- Christmas Day -->
+<div class="holiday-entry-card status-delayed-collection">
+<span class="holiday-date-text">December 25</span>
+<h2 class="holiday-title">Christmas Day</h2>
+<div class="service-detail-row">
+<span class="service-type-label">Garbage &amp; Recycling</span>
+<span class="service-status-message msg-delayed">Delayed 1 Day (Thu/Fri)</span>
+</div>
+<div class="service-detail-row">
+<span class="service-type-label">Transfer Station</span>
+<span class="service-status-message msg-closed">Closed</span>
+</div>
+</div>
+<!-- New Years Eve -->
+<div class="holiday-entry-card">
+<span class="holiday-date-text">December 31</span>
+<h2 class="holiday-title">New Years Eve</h2>
+<div class="service-detail-row">
+<span class="service-type-label">Garbage &amp; Recycling</span>
+<span class="service-status-message msg-on-schedule">Collected on Schedule</span>
+</div>
+<div class="service-detail-row">
+<span class="service-type-label">Transfer Station</span>
+<span class="service-status-message msg-on-schedule">Open</span>
+</div>
+</div>
+<!-- New Years Day -->
+<div class="holiday-entry-card status-delayed-collection">
+<span class="holiday-date-text">January 1, 2026</span>
+<h2 class="holiday-title">New Years Day</h2>
+<div class="service-detail-row">
+<span class="service-type-label">Garbage &amp; Recycling</span>
+<span class="service-status-message msg-delayed">Delayed 1 Day (Thu/Fri)</span>
+</div>
+<div class="service-detail-row">
+<span class="service-type-label">Transfer Station</span>
+<span class="service-status-message msg-closed">Closed</span>
+</div>
+</div>
+</div>
+</div>
