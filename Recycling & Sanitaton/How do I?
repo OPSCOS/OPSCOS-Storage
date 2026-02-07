@@ -1,0 +1,268 @@
+<style>
+    :root {
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #333333;
+    --text-muted: #64748b;
+    --accent-blue: #333333;
+    --accent-green: #16a34a;
+    --accent-amber: #d97706;
+    --accent-purple: #9333ea;
+    --border-color: #e2e8f0;
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    }
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+    body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+    }
+    .container {
+    max-width: 672px;
+    margin: 0 auto;
+    }
+    .top-header {
+    margin-bottom: 2.5rem;
+    text-align: center;
+    }
+    .top-header {
+    font-size: 2.25rem;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: var(--text-main);
+    }
+    .top-header {
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 1.1rem;
+    }
+    .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    }
+    @media (max-width: 480px) {
+    .services-grid {
+    grid-template-columns: 1fr;
+    }
+    }
+    .service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    text-align: center;
+    box-shadow: var(--shadow);
+    }
+    .service-card:hover {
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    }
+    .icon-box {
+    padding: 1rem;
+    background-color: var(--bg-color);
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    .service-card span {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    }
+    /* Detailed Information Sections */
+    .info-container {
+    margin-top: 4rem;
+    border-top: 2px solid var(--border-color);
+    padding-top: 3rem;
+    }
+    .info-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    }
+    .details-block {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+    }
+    .details-block h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+    color: var(--text-main);
+    border-bottom: 2px solid #eeeeee;
+    padding-bottom: 0.5rem;
+    }
+    .details-block h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.5rem 0;
+    color: var(--text-main);
+    font-weight: 800;
+    }
+    .details-block p {
+    color: #444444;
+    margin-bottom: 1rem;
+    }
+    .highlight-box {
+    background: #f1f5f9;
+    border-left: 4px solid #334155;
+    padding: 1.25rem;
+    border-radius: 0 0.75rem 0.75rem 0;
+    margin-bottom: 1.5rem;
+    }
+    .highlight-box p {
+    color: var(--text-main);
+    margin-bottom: 0;
+    font-weight: 500;
+    }
+    .phone-link {
+    font-weight: 800;
+    color: var(--text-main);
+    text-decoration: none;
+    border-bottom: 1px solid #ddd;
+    }
+    .web-link {
+    color: var(--text-main);
+    text-decoration: underline;
+    font-weight: 600;
+    }
+    .contact-method {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--bg-color);
+    border-radius: 0.75rem;
+    }
+    .contact-method div p {
+    font-weight: bold;
+    color: #666;
+    }
+    svg { width: 24px; height: 24px; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+</style>
+<div class="container">
+<header class="top-header">
+<h1>Stamford</h1>
+<p>Recycling Services</p>
+</header>
+<!-- Quick Action Buttons -->
+<div class="services-grid">
+<a href="#toter-info" class="service-card">
+<div class="icon-box" style="color: var(--accent-green)">
+<svg viewBox="0 0 24 24" stroke="currentColor">
+<path d="M7 2h10l3 5H4l3-5z"></path>
+<path d="M4 7v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7"></path>
+<path d="m9 17 3-3 3 3"></path>
+<path d="m9 12 3-3 3 3"></path>
+</svg>
+</div>
+<span>Recycle Toter</span>
+</a>
+<a href="#pickup-info" class="service-card">
+<div class="icon-box" style="color: var(--accent-blue)">
+<svg viewBox="0 0 24 24" stroke="currentColor">
+<path d="M3 6h18"></path>
+<path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+<path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+<line x1="10" y1="11" x2="10" y2="17"></line>
+<line x1="14" y1="11" x2="14" y2="17"></line>
+</svg>
+</div>
+<span>Missed Pickup</span>
+</a>
+<div class="service-card">
+<div class="icon-box" style="color: var(--accent-amber)">
+<svg viewBox="0 0 24 24" stroke="currentColor">
+<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+<line x1="12" y1="9" x2="12" y2="13"></line>
+<line x1="12" y1="17" x2="12.01" y2="17"></line>
+</svg>
+</div>
+<span>Illegal Dumping</span>
+</div>
+<div class="service-card">
+<div class="icon-box" style="color: var(--accent-purple)">
+<svg viewBox="0 0 24 24" stroke="currentColor"><rect width="16" height="20" x="4" y="2" rx="2"></rect>
+<line x1="8" y1="6" x2="16" y2="6"></line>
+<line x1="8" y1="10" x2="16" y2="10"></line>
+<line x1="8" y1="14" x2="16" y2="14"></line>
+</svg>
+</div>
+<span>Service Request</span>
+</div>
+</div>
+<!-- Detailed Information Sections -->
+<div class="info-container">
+<h2 class="info-title">Service Details</h2>
+<!-- Information from Image 2 (Recycle Toter) -->
+<div id="toter-info" class="details-block">
+<h2>Request a Recycle Toter</h2>
+<h3>Recycling Toter Bin</h3>
+<p>Each household is assigned one free recycling toter. You may buy additional recycling toter for <strong>$70 each</strong>.</p>
+<div class="contact-method">
+<svg stroke="#333" viewBox="0 0 24 24">
+<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+</svg>
+<div>
+<p style="margin:0; font-size: 0.85rem;">To purchase additional toters, call:</p>
+<a href="tel:2039774620" class="phone-link">203-977-4620</a>
+</div>
+</div>
+<p style="margin-top: 1rem;">To replace your damaged bins, Go to <a href="#" class="web-link">Fix It Stamford</a>.</p>
+<h3>Single-Stream Recycling</h3>
+<p>Single-Stream Recycling is easy!</p>
+<p>You can put all your recycling together loose in your large recycle toter. We are always looking to recycle more items, so check our <a href="#" class="web-link">Recyclopedia</a> to help find what can be recycled and reused.</p>
+<h3>Garbage Bin</h3>
+<p>Each household has been assigned one free garbage toter. You may buy additional garbage toters for <strong>$70 each</strong>. To purchase additional toters, please call <span class="phone-link">203-977-4620</span>.</p>
+</div>
+<!-- Information from Image 3 (Missed Pickup) -->
+<div id="pickup-info" class="details-block">
+<h2>Request a Pickup / Report a Missed Pickup</h2>
+<div class="highlight-box">
+<p>If the City of Stamford does not haul your garbage, please contact your hauler directly.</p>
+</div>
+<h3>To report a missed Garbage or Recycling pickup you can:</h3>
+<div class="contact-method">
+<svg stroke="#333" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle>
+<line x1="2" y1="12" x2="22" y2="12"></line>
+<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+</svg>
+<a href="#" class="web-link">Report a missed recycling or garbage pickup online</a>
+</div>
+<div class="contact-method">
+<svg stroke="#333" viewBox="0 0 24 24">
+<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+</svg>
+<div>
+<p style="margin:0; font-size: 0.85rem;">Call Citizens Service at:</p>
+<a href="tel:2039774140" class="phone-link" style="font-size: 1.25rem;">203-977-4140</a>
+</div>
+</div>
+</div>
+</div>
+</div>
